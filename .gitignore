@@ -1,1 +1,4 @@
 /.idea/
+/ui-api/.gradle
+/ui-api/build
+/ui-api/logs

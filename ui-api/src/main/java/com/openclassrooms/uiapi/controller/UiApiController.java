@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UiApiController {
 
     @ApiOperation(value = "This URI returns the index page")
-    @RequestMapping(value={"","/","/index"})
+    @GetMapping(value={"","/","/index"})
     public String index() {
         log.info("HTTP GET request received at /index");
 
