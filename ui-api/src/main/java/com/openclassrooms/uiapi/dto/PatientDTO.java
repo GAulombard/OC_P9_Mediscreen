@@ -1,4 +1,4 @@
-package com.openclassrooms.uiapi.DTO;
+package com.openclassrooms.uiapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

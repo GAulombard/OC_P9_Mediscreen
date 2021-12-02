@@ -74,6 +74,8 @@ public class PatientController {
     public String delete(@PathVariable("id") Integer id) {
         log.info("HTTP GET request received at /patient/delete/"+id+"");
 
+
+
         return "redirect:patient/list";
     }
 
