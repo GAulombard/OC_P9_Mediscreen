@@ -1,8 +1,10 @@
 package com.openclassrooms.uiapi.controller;
 
+import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -18,10 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping({"/patient"})
 public class PatientController {
 
+    @Autowired
+    private PatientProxyFeign patientProxyFeign;
+
     @ApiOperation(value = "This URI returns the list of all patients")
     @GetMapping({"/list"})
     public String getList(final Model model) {
         log.info("HTTP GET request received at /patient/list");
+
+        try {
+            model.addAttribute("patients",patientProxyFeign.getAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "patient/list";
     }

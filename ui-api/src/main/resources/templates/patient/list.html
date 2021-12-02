@@ -29,8 +29,8 @@
           <table class="table">
             <thead class="thead-light">
             <tr>
-              <th class="text-left">First name</th>
               <th class="text-left">Last Name</th>
+              <th class="text-left">First name</th>
               <th class="text-left">Birthdate</th>
               <th class="text-left">Sex</th>
               <th class="text-left">Address</th>
@@ -41,14 +41,14 @@
             </thead>
             <tbody>
             <tr th:each="patient: ${patients}">
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.firstName}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.lastName}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.birthdate}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.sex}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.address}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.phone}"></td>
-              <td th:style="${patient.deleted == true} ? 'color:red;' : 'color:black;'" th:text="${patient.note}"></td>
-              <td th:style="${user.deleted == true} ? 'color:red;' : 'color:green;'" th:text="${user.deleted}"></td>
+              <td th:text="${patient.lastName}"></td>
+              <td th:text="${patient.firstName}"></td>
+              <td th:text="${patient.birthDate}"></td>
+              <td th:text="${patient.sex}"></td>
+              <td th:text="${patient.address}"></td>
+              <td th:text="${patient.phoneNumber}"></td>
+              <td ></td>
+              <td ></td>
             </tr>
             </tbody>
           </table>
