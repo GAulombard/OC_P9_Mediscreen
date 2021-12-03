@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-@Validated
 @Api(description = "User Interface API")
 @Slf4j
 public class UiApiController {

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
@@ -19,26 +18,22 @@ public class PatientDTO {
     private Integer id;
 
     @NotEmpty(message = "Last name is mandatory")
-    //@Length(max = 125, message = "The maximum length for lastName is 125 characters")
+    @Size(min = 1,max = 50,message = "Last name must contains at least 1 letter and 50 letters maximum")
     private String lastName;
 
     @NotEmpty(message = "First name is mandatory")
-    //@Length(max = 125, message = "The maximum length for firstName is 125 characters")
+    @Size(min = 1,max = 50,message = "First name must contains at least 1 letter and 50 letters maximum")
     private String firstName;
 
-    @NotNull(message = "Date of birth is mandatory")
-    //@Past(message = "Please enter a valid birth-date")
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "Birth-date must precede today's")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") //todo: find a way to write the right error message for this
+    @NotNull(message = "Birth-date is mandatory")
     private LocalDate birthDate;
 
-    @NotEmpty(message = "Sex is mandatory")
-    //@Length(max = 1, message = "The maximum length for sex is 1 characters")
-    //@Pattern(regexp = "^[M|F]{1}$", message = "Please enter character M or F")
     private String sex;
 
-    //@Length(max = 150, message = "The maximum length for address is 150 characters")
     private String address;
 
-    //@Length(max = 10, message = "Please enter a valid phone number")
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Phone number must contains only numbers, and maximum 10 numbers")
     private String phoneNumber;
 }

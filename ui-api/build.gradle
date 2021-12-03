@@ -15,6 +15,6 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.9.2' //doesn't work with the latest version
 
     
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
+    //implementation 'javax.validation:validation-api:2.0.1.Final'
+    //implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
 }

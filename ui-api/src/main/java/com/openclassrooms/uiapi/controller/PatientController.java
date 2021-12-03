@@ -9,13 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
-@Validated
 @Api(description = "Patient API")
 @Slf4j
 @RequestMapping({"/patient"})
@@ -82,10 +80,11 @@ public class PatientController {
     @ApiOperation(value = "This URI update patient's information")
     @PostMapping({"/update/{id}"})
     public String update(@PathVariable("id") Integer id, @Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, final Model model) {
-        log.info("HTTP POST request received at /patient/update/"+id+"");
+        log.info("HTTP POST request received at /patient/update/"+id);
 
         if (bindingResult.hasErrors()) {
-            return "patient/update/"+id;
+            log.error("ERROR(S): {}",bindingResult);
+            return "patient/update";
         } else {
             patientProxyFeign.update(id,patientDTO);
             return "redirect:/patient/list";
