@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,12 +27,15 @@ public class PatientController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns a patient by id")
-    public PatientDTO getPatientById(@PathVariable("id") Integer id) throws PatientNotFoundException {
+    public PatientDTO getPatientById(@ApiParam(
+            value = "id",
+            example = "2"
+    )@PathVariable("id") Integer id) throws PatientNotFoundException {
         log.info("HTTP GET request received at /patient/"+id);
 
-        PatientDTO patientDto = patientService.findPatientById(id);
+        PatientDTO patientDTO = patientService.findPatientById(id);
 
-        return patientDto;
+        return patientDTO;
     }
 
     @GetMapping("/list")
@@ -69,7 +73,10 @@ public class PatientController {
 
     @PostMapping("/update/{id}")
     @ApiOperation(value="This uri validate the patient form to save a new patient in the database.")
-    public void update(@PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) {
+    public void update(@ApiParam(
+            value = "id",
+            example = "2"
+    ) @PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) throws PatientNotFoundException {
         log.info("HTTP POST request received at /patient/update/"+id);
 
         patientService.update(patientDTO);

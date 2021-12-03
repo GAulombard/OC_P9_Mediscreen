@@ -25,13 +25,15 @@ public class PatientService {
 
     public List<Patient> getAll() {
         log.info("** Process to get all patients");
+
         return patientRepository.findAll(Sort.by(Sort.Direction.ASC,"lastName"));
+
     }
 
 
     public void delete(Integer id) throws PatientNotFoundException {
-
         log.info("** Process to delete 1 patient, id: "+id);
+
         if(patientRepository.existsById(id)) {
             patientRepository.deleteById(id);
             log.info("** delete succeed");
@@ -41,8 +43,12 @@ public class PatientService {
         }
     }
 
-    public void save(PatientDTO patientDTO){
+    public void save(PatientDTO patientDTO) throws PatientAlreadyExistsException {
         log.info("** Process to save a new patient in database");
+
+        if(patientRepository.existsByLastNameAndFirstNameAndBirthDate(patientDTO.getLastName(),patientDTO.getFirstName(),patientDTO.getBirthDate())) {
+            throw new PatientAlreadyExistsException("Patient already exists");
+        }
 
         Patient patientToSave = dtoConverter.PatientDTOToPatient(patientDTO);
 
@@ -51,10 +57,12 @@ public class PatientService {
 
     }
 
-    public void update(PatientDTO patientDTO) {
+    public void update(PatientDTO patientDTO) throws PatientNotFoundException {
         log.info("** Process to update an existing patient in database");
 
         Patient patientToUpdate = dtoConverter.PatientDTOToPatient(patientDTO);
+
+        if(!patientRepository.existsById(patientToUpdate.getId())) throw new PatientNotFoundException("Patient not found");
 
         patientRepository.save(patientToUpdate);
 
