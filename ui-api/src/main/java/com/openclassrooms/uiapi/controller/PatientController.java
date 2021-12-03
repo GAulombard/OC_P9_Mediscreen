@@ -72,11 +72,15 @@ public class PatientController {
     @ApiOperation(value = "This URI allow to delete a patient")
     @GetMapping({"/delete/{id}"})
     public String delete(@PathVariable("id") Integer id) {
-        log.info("HTTP GET request received at /patient/delete/"+id+"");
+        log.info("HTTP GET request received at /patient/delete/"+id);
 
+        try {
+            patientProxyFeign.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-        return "redirect:patient/list";
+        return "redirect:patient/list"; //todo: see the link after deleting a patient is not working
     }
 
 }

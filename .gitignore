@@ -4,3 +4,4 @@
 /ui-api/logs
 /.gradle/
 /patient-api/logs/
+/patient-api/build/
