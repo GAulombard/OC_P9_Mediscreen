@@ -17,4 +17,7 @@ dependencies {
 
     implementation 'mysql:mysql-connector-java:8.0.25'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
 }

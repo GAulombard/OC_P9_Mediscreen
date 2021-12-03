@@ -25,17 +25,47 @@
         <div class="col-12 col-lg-12">
             <div class="card my-3 shadow">
                 <div class="card-body">
-                    <h2 class="card-title">Add patient form</h2>
-                    <form class="form-patient" method="post" th:action="@{/patient/validate}" th:object="${patient}">
-                        <h2 class="form-signup-heading">Create patient</h2>
-
-                        <p>
-                            <label for="lastname">Last Name</label>
-                            <input th:field="*{lastName}" type="text" id="lastname" name="lastname" class="form-control"
-                                   placeholder="last name">
-                            <span class="text-danger" th:errors="*{lastName}"></span>
-                        </p>
-                        <button class="btn btn-md btn-info btn-block" type="submit">add patient</button>
+                    <form class="form-patient" method="post" th:action="@{/patient/validate}" th:object="${patientDTO}">
+                        <h2 class="form-signup-heading">Add patient form</h2>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="lastname">Last Name</label>
+                                <input th:field="*{lastName}" type="text" class="form-control" id="lastname" placeholder="your last name">
+                                <span class="text-danger" th:errors="*{lastName}"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">First Name</label>
+                                <input th:field="*{firstName}" type="text" class="form-control" id="firstname" placeholder="your first name">
+                                <span class="text-danger" th:errors="*{firstName}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input th:field="*{address}" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <span class="text-danger" th:errors="*{address}"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="birthdate">Birth date</label>
+                                <input th:field="*{birthDate}" type="text" class="form-control" id="birthdate" placeholder="aaaa-mm-dd">
+                                <span class="text-danger" th:errors="*{birthDate}"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="gender">Gender</label>
+                                <select th:field="*{sex}" id="gender" class="form-control">
+                                    <option selected value="M">M</option>
+                                    <option value="F">F</option>
+                                </select>
+                                <span class="text-danger" th:errors="*{sex}"></span>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="phone">Phone</label>
+                                <input th:field="*{phoneNumber}" type="text" class="form-control" id="phone">
+                                <span class="text-danger" th:errors="*{phoneNumber}"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
+                        <button type="submit" class="btn btn-info">Create patient</button>
                     </form>
                 </div>
             </div>

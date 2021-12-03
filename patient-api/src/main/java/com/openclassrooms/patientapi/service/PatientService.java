@@ -1,8 +1,11 @@
 package com.openclassrooms.patientapi.service;
 
+import com.openclassrooms.patientapi.dto.PatientDTO;
+import com.openclassrooms.patientapi.exception.PatientAlreadyExistsException;
 import com.openclassrooms.patientapi.exception.PatientNotFoundException;
 import com.openclassrooms.patientapi.model.Patient;
 import com.openclassrooms.patientapi.repository.PatientRepository;
+import com.openclassrooms.patientapi.util.DTOConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ public class PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private DTOConverter dtoConverter;
 
     public List<Patient> getAll() {
         log.info("** Process to get all patients");
@@ -33,7 +39,35 @@ public class PatientService {
         } else {
             throw new PatientNotFoundException("Patient with id: "+id+" not found");
         }
+    }
 
+    public void save(PatientDTO patientDTO){
+        log.info("** Process to save a new patient in database");
+
+        Patient patientToSave = dtoConverter.PatientDTOToPatient(patientDTO);
+
+
+        patientRepository.save(patientToSave);
 
     }
+
+    public void update(PatientDTO patientDTO) {
+        log.info("** Process to update an existing patient in database");
+
+        Patient patientToUpdate = dtoConverter.PatientDTOToPatient(patientDTO);
+
+        patientRepository.save(patientToUpdate);
+
+    }
+
+    public PatientDTO findPatientById(Integer id) throws PatientNotFoundException {
+        log.info("** Process de find a patient by id");
+
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with this id"));
+
+
+        return dtoConverter.PatientToPatientDTO(patient);
+    }
+
 }

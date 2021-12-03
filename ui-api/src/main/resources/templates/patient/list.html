@@ -43,6 +43,7 @@
               <th class="text-left">Phone</th>
               <th class="text-left">Note</th>
               <th class="text-left"></th>
+              <th class="text-left"></th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,11 @@
               <td th:text="${patient.address}"></td>
               <td th:text="${patient.phoneNumber}"></td>
               <td></td>
+              <td>
+                <a th:href="'/patient/update/'+${patient.id}"
+                   class="btn btn-info btn-sm">Update
+                </a>
+              </td>
               <td>
                 <a th:href="'/patient/delete/'+${patient.id}"
                    class="btn btn-danger btn-sm"

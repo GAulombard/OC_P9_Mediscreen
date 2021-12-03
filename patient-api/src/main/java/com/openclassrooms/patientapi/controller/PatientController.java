@@ -1,5 +1,7 @@
 package com.openclassrooms.patientapi.controller;
 
+import com.openclassrooms.patientapi.dto.PatientDTO;
+import com.openclassrooms.patientapi.exception.PatientAlreadyExistsException;
 import com.openclassrooms.patientapi.exception.PatientNotFoundException;
 import com.openclassrooms.patientapi.model.Patient;
 import com.openclassrooms.patientapi.service.PatientService;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,6 +23,16 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "This URI returns a patient by id")
+    public PatientDTO getPatientById(@PathVariable("id") Integer id) throws PatientNotFoundException {
+        log.info("HTTP GET request received at /patient/"+id);
+
+        PatientDTO patientDto = patientService.findPatientById(id);
+
+        return patientDto;
+    }
 
     @GetMapping("/list")
     @ApiOperation(value = "This URI returns a list of all patient saved in database.")
@@ -42,6 +55,24 @@ public class PatientController {
         log.info("HTTP GET request received at /patient/delete/"+id);
 
         patientService.delete(id);
+
+    }
+
+    @PostMapping("/validate")
+    @ApiOperation(value="This uri validate the patient form to save a new patient in the database.")
+    public void validate(@Valid @RequestBody PatientDTO patientDTO) throws PatientAlreadyExistsException {
+        log.info("HTTP POST request received at /patient/validate");
+
+        patientService.save(patientDTO);
+
+    }
+
+    @PostMapping("/update/{id}")
+    @ApiOperation(value="This uri validate the patient form to save a new patient in the database.")
+    public void update(@PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) {
+        log.info("HTTP POST request received at /patient/update/"+id);
+
+        patientService.update(patientDTO);
 
     }
 

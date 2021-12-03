@@ -1,10 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org" class="h-100"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Mediscreen</title>
 </head>
+
+
 <body>
 
+<!--MENU-->
+<div th:replace="fragments/nav"></div>
+
+
+<!-- SECTION -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+                    <form class="form-patient" method="post" th:action="@{/patient/update/{id}(id=${patientDTO.id})}" th:object="${patientDTO}">
+                        <h2 class="form-signup-heading">Update patient</h2>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="lastname">Last Name</label>
+                                <input th:field="*{lastName}" type="text" class="form-control" id="lastname" placeholder="your last name">
+                                <span class="text-danger" th:errors="*{lastName}"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">First Name</label>
+                                <input th:field="*{firstName}" type="text" class="form-control" id="firstname" placeholder="your first name">
+                                <span class="text-danger" th:errors="*{firstName}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input th:field="*{address}" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <span class="text-danger" th:errors="*{address}"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="birthdate">Birth date</label>
+                                <input th:field="*{birthDate}" type="text" class="form-control" id="birthdate" placeholder="aaaa-mm-dd">
+                                <span class="text-danger" th:errors="*{birthDate}"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="gender">Gender</label>
+                                <select th:field="*{sex}" id="gender" class="form-control">
+                                    <option selected value="M">M</option>
+                                    <option value="F">F</option>
+                                </select>
+                                <span class="text-danger" th:errors="*{sex}"></span>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="phone">Phone</label>
+                                <input th:field="*{phoneNumber}" type="text" class="form-control" id="phone">
+                                <span class="text-danger" th:errors="*{phoneNumber}"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
+                        <button type="submit" class="btn btn-info">Update patient</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div th:replace="fragments/foot"></div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>

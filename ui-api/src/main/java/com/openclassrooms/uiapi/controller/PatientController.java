@@ -1,5 +1,6 @@
 package com.openclassrooms.uiapi.controller;
 
+import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -7,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @Validated
@@ -42,31 +43,53 @@ public class PatientController {
     public String getAddForm(final Model model) {
         log.info("HTTP GET request received at /patient/add");
 
+        model.addAttribute("patientDTO",new PatientDTO());
+
         return "patient/add";
     }
 
-    @ApiOperation(value = "This URI add a new patient to the list")
+    @ApiOperation(value = "This URI validate the for to add a new patient to the database")
     @PostMapping({"/validate"})
-    public String validateAddForm() {
+    public String validateAddForm(@Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult) {
         log.info("HTTP POST request received at /patient/validate");
 
-        return "redirect:patient/list";
+        if(bindingResult.hasErrors()) {
+            log.error("ERROR(S): {}",bindingResult);
+            return "patient/add";
+        }
+
+        try {
+            patientProxyFeign.validate(patientDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:list";
     }
 
     @ApiOperation(value = "This URI returns the form page to update patient's information")
     @GetMapping({"/update/{id}"})
     public String getUpdateForm(@PathVariable("id") Integer id, final Model model) {
-        log.info("HTTP GET request received at /patient/update/"+id+"");
+        log.info("HTTP GET request received at /patient/update/"+id);
+
+        PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
+        model.addAttribute("patientDTO",patientDTO);
+
 
         return "patient/update";
     }
 
     @ApiOperation(value = "This URI update patient's information")
     @PostMapping({"/update/{id}"})
-    public String update(@PathVariable("id") Integer id, final Model model) {
+    public String update(@PathVariable("id") Integer id, @Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, final Model model) {
         log.info("HTTP POST request received at /patient/update/"+id+"");
 
-        return "redirect:patient/list";
+        if (bindingResult.hasErrors()) {
+            return "patient/update/"+id;
+        } else {
+            patientProxyFeign.update(id,patientDTO);
+            return "redirect:/patient/list";
+        }
     }
 
     @ApiOperation(value = "This URI allow to delete a patient")
@@ -80,7 +103,7 @@ public class PatientController {
             e.printStackTrace();
         }
 
-        return "redirect:patient/list"; //todo: see the link after deleting a patient is not working
+        return "redirect:/patient/list";
     }
 
 }
