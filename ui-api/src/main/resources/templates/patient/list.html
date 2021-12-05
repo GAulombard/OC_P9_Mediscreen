@@ -32,7 +32,7 @@
             Add new patient
           </a></div>
           </div>
-          <table class="table">
+          <table class="table table-hover">
             <thead class="thead-light">
             <tr>
               <th class="text-left">Last Name</th>
@@ -48,12 +48,12 @@
             </thead>
             <tbody>
             <tr th:each="patient: ${patients}">
-              <td th:text="${patient.lastName}"></td>
-              <td th:text="${patient.firstName}"></td>
-              <td th:text="${patient.birthDate}"></td>
-              <td th:text="${patient.sex}"></td>
-              <td th:text="${patient.address}"></td>
-              <td th:text="${patient.phoneNumber}"></td>
+              <td th:text="${patient.lastName}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+              <td th:text="${patient.firstName}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+              <td th:text="${patient.birthDate}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+              <td th:text="${patient.sex}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+              <td th:text="${patient.address}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+              <td th:text="${patient.phoneNumber}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
               <td></td>
               <td>
                 <a th:href="'/patient/update/'+${patient.id}"
@@ -78,6 +78,12 @@
 <!-- FOOTER -->
 <div th:replace="fragments/foot"></div>
 
+
+<script>
+  function rowClicked(value) {
+    location.href = "/patient/profile/" + value;
+  }
+</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

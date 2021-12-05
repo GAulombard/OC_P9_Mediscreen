@@ -106,4 +106,15 @@ public class PatientController {
         return "redirect:/patient/list";
     }
 
+    @ApiOperation(value = "This URI returns the patient's profile page")
+    @GetMapping({"/profile/{id}"})
+    public String profile(@PathVariable("id") Integer id, Model model) {
+        log.info("HTTP GET request received at /patient/profile/"+id);
+
+        PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
+        model.addAttribute("patientDTO",patientDTO);
+
+        return "/patient/profile";
+    }
+
 }
