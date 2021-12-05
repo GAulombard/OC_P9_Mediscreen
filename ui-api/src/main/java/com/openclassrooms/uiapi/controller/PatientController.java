@@ -4,6 +4,7 @@ import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class PatientController {
         log.info("HTTP GET request received at /patient/list");
 
         try {
-            model.addAttribute("patients",patientProxyFeign.getAll());
+            model.addAttribute("patients", patientProxyFeign.getAll());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,7 +43,7 @@ public class PatientController {
     public String getAddForm(final Model model) {
         log.info("HTTP GET request received at /patient/add");
 
-        model.addAttribute("patientDTO",new PatientDTO());
+        model.addAttribute("patientDTO", new PatientDTO());
 
         return "patient/add";
     }
@@ -52,8 +53,8 @@ public class PatientController {
     public String validateAddForm(@Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult) {
         log.info("HTTP POST request received at /patient/validate");
 
-        if(bindingResult.hasErrors()) {
-            log.error("ERROR(S): {}",bindingResult);
+        if (bindingResult.hasErrors()) {
+            log.error("ERROR(S): {}", bindingResult);
             return "patient/add";
         }
 
@@ -68,11 +69,14 @@ public class PatientController {
 
     @ApiOperation(value = "This URI returns the form page to update patient's information")
     @GetMapping({"/update/{id}"})
-    public String getUpdateForm(@PathVariable("id") Integer id, final Model model) {
-        log.info("HTTP GET request received at /patient/update/"+id);
+    public String getUpdateForm(@ApiParam(
+            value = "id",
+            example = "2"
+    ) @PathVariable("id") Integer id, final Model model) {
+        log.info("HTTP GET request received at /patient/update/" + id);
 
         PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
-        model.addAttribute("patientDTO",patientDTO);
+        model.addAttribute("patientDTO", patientDTO);
 
 
         return "patient/update";
@@ -80,22 +84,28 @@ public class PatientController {
 
     @ApiOperation(value = "This URI update patient's information")
     @PostMapping({"/update/{id}"})
-    public String update(@PathVariable("id") Integer id, @Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, final Model model) {
-        log.info("HTTP POST request received at /patient/update/"+id);
+    public String update(@ApiParam(
+            value = "id",
+            example = "2"
+    ) @PathVariable("id") Integer id, @Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, final Model model) {
+        log.info("HTTP POST request received at /patient/update/" + id);
 
         if (bindingResult.hasErrors()) {
-            log.error("ERROR(S): {}",bindingResult);
+            log.error("ERROR(S): {}", bindingResult);
             return "patient/update";
         } else {
-            patientProxyFeign.update(id,patientDTO);
+            patientProxyFeign.update(id, patientDTO);
             return "redirect:/patient/list";
         }
     }
 
     @ApiOperation(value = "This URI allow to delete a patient")
     @GetMapping({"/delete/{id}"})
-    public String delete(@PathVariable("id") Integer id) {
-        log.info("HTTP GET request received at /patient/delete/"+id);
+    public String delete(@ApiParam(
+            value = "id",
+            example = "2"
+    ) @PathVariable("id") Integer id) {
+        log.info("HTTP GET request received at /patient/delete/" + id);
 
         try {
             patientProxyFeign.delete(id);
@@ -108,11 +118,14 @@ public class PatientController {
 
     @ApiOperation(value = "This URI returns the patient's profile page")
     @GetMapping({"/profile/{id}"})
-    public String profile(@PathVariable("id") Integer id, Model model) {
-        log.info("HTTP GET request received at /patient/profile/"+id);
+    public String profile(@ApiParam(
+            value = "id",
+            example = "2"
+    ) @PathVariable("id") Integer id, Model model) {
+        log.info("HTTP GET request received at /patient/profile/" + id);
 
         PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
-        model.addAttribute("patientDTO",patientDTO);
+        model.addAttribute("patientDTO", patientDTO);
 
         return "/patient/profile";
     }

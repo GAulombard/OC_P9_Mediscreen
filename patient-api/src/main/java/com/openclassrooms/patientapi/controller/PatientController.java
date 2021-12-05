@@ -30,8 +30,8 @@ public class PatientController {
     public PatientDTO getPatientById(@ApiParam(
             value = "id",
             example = "2"
-    )@PathVariable("id") Integer id) throws PatientNotFoundException {
-        log.info("HTTP GET request received at /patient/"+id);
+    ) @PathVariable("id") Integer id) throws PatientNotFoundException {
+        log.info("HTTP GET request received at /patient/" + id);
 
         PatientDTO patientDTO = patientService.findPatientById(id);
 
@@ -56,14 +56,14 @@ public class PatientController {
                     example = "2"
             )
             @PathVariable("id") Integer id) throws PatientNotFoundException {
-        log.info("HTTP GET request received at /patient/delete/"+id);
+        log.info("HTTP GET request received at /patient/delete/" + id);
 
         patientService.delete(id);
 
     }
 
     @PostMapping("/validate")
-    @ApiOperation(value="This uri validate the patient form to save a new patient in the database.")
+    @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
     public void validate(@Valid @RequestBody PatientDTO patientDTO) throws PatientAlreadyExistsException {
         log.info("HTTP POST request received at /patient/validate");
 
@@ -72,12 +72,12 @@ public class PatientController {
     }
 
     @PostMapping("/update/{id}")
-    @ApiOperation(value="This uri validate the patient form to save a new patient in the database.")
+    @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
     public void update(@ApiParam(
             value = "id",
             example = "2"
     ) @PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) throws PatientNotFoundException {
-        log.info("HTTP POST request received at /patient/update/"+id);
+        log.info("HTTP POST request received at /patient/update/" + id);
 
         patientService.update(patientDTO);
 

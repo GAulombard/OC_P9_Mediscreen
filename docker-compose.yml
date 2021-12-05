@@ -1,0 +1,51 @@
+version: '3.6'
+services:
+  mysql:
+    image: mysql
+    container_name: mysqldb
+    environment:
+      MYSQL_DATABASE: mediscreen_db
+      MYSQL_USER: rootuser
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_PASSWORD: rootroot
+    ports:
+      - 3307:3306
+    volumes:
+      - ./mediscreen_mysql:/var/lib/mysql
+    networks:
+      - web-server
+    restart: always
+  ui-api:
+    environment:
+      - PROXY_PATIENT=patient-api:8081/patient
+    build: ui-api
+    image: ui-api-1.0.0.jar
+    networks:
+      - web-server
+    restart: always
+    ports:
+      - "8080:8080"
+    container_name: ui-api
+  patient-api:
+    build: patient-api
+    image: patient-api-1.0.0.jar
+    networks:
+      - web-server
+    restart: always
+    ports:
+      - "8081:8081"
+    container_name: patient-api
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/mediscreen_db?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=rootuser
+      - SPRING_DATASOURCE_PASSWORD=rootroot
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5Dialect
+    depends_on:
+      - mysql
+
+networks:
+  web-server:
+    driver: bridge
+
+volumes:
+  mediscreen_mysql:
