@@ -5,3 +5,4 @@
 /ui-api/build
 /ui-api/logs
 /.gradle/
+/mediscreen_mysql/
