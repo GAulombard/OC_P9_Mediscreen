@@ -1,9 +1,11 @@
-package com.openclassrooms.patientapi;
+package com.openclassrooms.patientapi.service;
 
 import com.openclassrooms.patientapi.dto.PatientDTO;
 import com.openclassrooms.patientapi.exception.PatientAlreadyExistsException;
+import com.openclassrooms.patientapi.exception.PatientNotFoundException;
 import com.openclassrooms.patientapi.model.Patient;
 import com.openclassrooms.patientapi.service.PatientServiceImp;
+import com.openclassrooms.patientapi.util.DTOConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,9 @@ public class PatientServiceTest {
 
     @Autowired
     private JpaRepository patientRepository;
+
+    @Autowired
+    private DTOConverter dtoConverter;
 
     @Autowired
     private PatientServiceImp patientServiceImp;
@@ -63,10 +68,120 @@ public class PatientServiceTest {
     @Test
     @Transactional
     @Rollback
-    public void test_getAll_shouldThrowPatientAlreadyExistsException() throws PatientAlreadyExistsException {
+    public void test_save() throws PatientAlreadyExistsException {
+        patientServiceImp.save(patientDTO1);
+        List<Patient> patientList = patientServiceImp.getAll();
+        Patient patient = patientList.get(0);
+
+        assertEquals(1,patientServiceImp.getAll().size());
+        assertEquals("Test1",patient.getLastName());
+        assertEquals("test1",patient.getFirstName());
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_save_shouldThrowsPatientAlreadyExistsException() throws PatientAlreadyExistsException {
         patientServiceImp.save(patientDTO1);
 
         assertThrows(PatientAlreadyExistsException.class,() -> patientServiceImp.save(patientDTO1));
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_delete() throws PatientAlreadyExistsException, PatientNotFoundException {
+        patientServiceImp.save(patientDTO1);
+
+        List<Patient> patientList = patientServiceImp.getAll();
+
+        Patient patient = patientList.get(0);
+
+        patientServiceImp.delete(patient.getId());
+
+        assertEquals(0,patientServiceImp.getAll().size());
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_delete_shouldThrowsPatientNotFoundException() throws PatientAlreadyExistsException, PatientNotFoundException {
+
+        assertThrows(PatientNotFoundException.class,() -> patientServiceImp.delete(150));
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_update() throws PatientAlreadyExistsException, PatientNotFoundException {
+        patientServiceImp.save(patientDTO1);
+        List<Patient> patientList = patientServiceImp.getAll();
+        Patient patient = patientList.get(0);
+
+        patient.setFirstName("John");
+        patient.setLastName("Doe");
+
+        PatientDTO newPatientDTO = dtoConverter.PatientToPatientDTO(patient);
+        patientServiceImp.update(newPatientDTO);
+
+        List<Patient> newPatientList = patientServiceImp.getAll();
+        Patient newPatient = newPatientList.get(0);
+
+        assertEquals("John",newPatient.getFirstName());
+        assertEquals("Doe",newPatient.getLastName());
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_update_shouldThrowsPatientNotFoundException() throws PatientAlreadyExistsException {
+        patientServiceImp.save(patientDTO1);
+        List<Patient> patientList = patientServiceImp.getAll();
+        Patient patient = patientList.get(0);
+
+        patient.setFirstName("John");
+        patient.setLastName("Doe");
+
+        PatientDTO newPatientDTO = dtoConverter.PatientToPatientDTO(patient);
+        patientDTO2.setId(150);
+
+        assertThrows(PatientNotFoundException.class, ()-> patientServiceImp.update(patientDTO2));
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_findPatientById() throws PatientAlreadyExistsException, PatientNotFoundException {
+
+        patientServiceImp.save(patientDTO1);
+
+        List<Patient> patientList = patientServiceImp.getAll();
+
+        Patient patient = patientList.get(0);
+
+        assertEquals("test1",patientServiceImp.findPatientById(patient.getId()).getFirstName());
+        assertEquals("Test1",patientServiceImp.findPatientById(patient.getId()).getLastName());
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void test_findPatientById_shouldThrowsPatientNotFoundException() throws PatientAlreadyExistsException {
+
+        patientServiceImp.save(patientDTO1);
+
+        List<Patient> patientList = patientServiceImp.getAll();
+
+        Patient patient = patientList.get(0);
+
+        assertThrows(PatientNotFoundException.class, ()->patientServiceImp.findPatientById(150));
 
     }
 }

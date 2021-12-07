@@ -35,4 +35,11 @@ public class Patient {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    public Patient(String lastName, String firstName, LocalDate birthDate, String sex) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.sex = sex;
+    }
+
 }

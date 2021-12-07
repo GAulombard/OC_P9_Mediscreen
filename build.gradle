@@ -48,15 +48,16 @@ subprojects {
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.4'
 
         testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.1.6.RELEASE'
-        testImplementation "junit:junit:4.+"
+        testImplementation 'junit:junit:4.13.2'
 
         //JUNIT 5
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 
+        implementation 'junit:junit:4.13.2'
+
         implementation 'org.hibernate:hibernate-validator:7.0.1.Final'
-        //implementation 'javax.validation:validation-api:2.0.1.Final'
-        //implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
+
     }
 
     test {

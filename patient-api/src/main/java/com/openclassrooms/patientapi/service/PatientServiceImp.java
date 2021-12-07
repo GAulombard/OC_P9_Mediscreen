@@ -75,6 +75,8 @@ public class PatientServiceImp implements PatientService {
     public PatientDTO findPatientById(Integer id) throws PatientNotFoundException {
         log.info("** Process de find a patient by id");
 
+        if(!patientRepository.existsById(id)) throw new PatientNotFoundException("Patient not found with this id");
+
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found with this id"));
 

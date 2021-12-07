@@ -6,3 +6,9 @@
 /ui-api/logs
 /.gradle/
 /mediscreen_mysql/
+/history-api/.gradle
+/history-api/build
+/history-api/logs
+/assessment-api/.gradle
+/assessment-api/build
+/assessment-api/logs

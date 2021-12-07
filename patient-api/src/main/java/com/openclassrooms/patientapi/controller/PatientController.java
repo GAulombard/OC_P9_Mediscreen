@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -63,6 +63,7 @@ public class PatientController {
     }
 
     @PostMapping("/validate")
+    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
     public void validate(@Valid @RequestBody PatientDTO patientDTO) throws PatientAlreadyExistsException {
         log.info("HTTP POST request received at /patient/validate");
@@ -72,6 +73,7 @@ public class PatientController {
     }
 
     @PostMapping("/update/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
     public void update(@ApiParam(
             value = "id",

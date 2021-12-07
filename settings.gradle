@@ -1,3 +1,3 @@
 rootProject.name = 'MediScreen'
 
-include('patient-api','ui-api')
+include('patient-api','ui-api','history-api','assessment-api')

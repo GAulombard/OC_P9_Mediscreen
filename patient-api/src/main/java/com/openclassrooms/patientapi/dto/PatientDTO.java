@@ -33,4 +33,10 @@ public class PatientDTO {
 
     private String phoneNumber;
 
+    public PatientDTO(String lastName, String firstName, LocalDate birthDate, String sex) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.sex = sex;
+    }
 }
