@@ -74,7 +74,7 @@ public class PatientController {
 
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
+    @ApiOperation(value = "This uri validate the patient's form to update a patient's personal information in the database.")
     public void update(@ApiParam(
             value = "id",
             example = "2"

@@ -14,7 +14,7 @@ dependencies {
     implementation 'io.springfox:springfox-swagger2:2.9.2' //doesn't work with the latest version
     implementation 'io.springfox:springfox-swagger-ui:2.9.2' //doesn't work with the latest version
 
-    implementation 'mysql:mysql-connector-java:8.0.25'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
-
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.6.1'
+    implementation 'org.mongodb:mongo-java-driver:3.12.10'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.6.1'
 }
