@@ -18,6 +18,8 @@ services:
   ui-api:
     environment:
       - PROXY_PATIENT=patient-api:8081/patient
+      - PROXY_HISTORY=history-api:8082/history
+      - PROXY_ASSESSMENT=assessment-api:8083/assessment
     build: ui-api
     image: ui-api-1.0.0.jar
     networks:
