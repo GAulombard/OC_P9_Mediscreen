@@ -26,7 +26,7 @@
             <div class="card my-3 shadow">
                 <div class="card-body">
                     <form class="form-patient" method="post" th:action="@{/history/update/{id}(id=${noteDTO.id})}" th:object="${noteDTO}">
-                        <h2 class="form-signup-heading">Add patient's history form</h2>
+                        <h2 class="form-signup-heading">Update patient's history form</h2>
                         <input type="hidden" th:field="*{patientId}" id="patientId">
                         <!--                        <div class="form-row">
                                                     <div class="form-group col-md-6">
@@ -42,7 +42,7 @@
                             <!--<span class="text-danger" th:errors="*{note}"></span>-->
                         </div>
                         <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
-                        <button type="submit" class="btn btn-info">Save history</button>
+                        <button type="submit" class="btn btn-info">Update note</button>
                     </form>
                 </div>
             </div>
