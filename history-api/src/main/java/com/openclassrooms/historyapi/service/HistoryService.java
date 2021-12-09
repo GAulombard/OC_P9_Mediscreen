@@ -1,9 +1,11 @@
 package com.openclassrooms.historyapi.service;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface HistoryService {
 
     void create(NoteDTO noteDTO);

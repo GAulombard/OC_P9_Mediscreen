@@ -1,4 +1,4 @@
-package com.openclassrooms.uiapi.config;
+package com.openclassrooms.patientapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.openclassrooms.uiapi.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.openclassrooms.patientapi.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiEndPointsInfo());
@@ -27,13 +27,12 @@ public class SwaggerConfig {
 
     private ApiInfo apiEndPointsInfo() {
 
-        return new ApiInfoBuilder().title("UI Microservice REST API")
-                .description("Ui rest api")
+        return new ApiInfoBuilder().title("PATIENT Microservice REST API")
+                .description("Patient rest api")
                 .contact(new Contact("Aulombard geoffrey", "www.example.com", "mail@mail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")
                 .build();
     }
-
 }

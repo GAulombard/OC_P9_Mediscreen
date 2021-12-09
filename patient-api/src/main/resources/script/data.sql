@@ -3,14 +3,14 @@ CREATE DATABASE IF NOT EXISTS mediscreen_db;
 USE mediscreen_db;
 
 CREATE TABLE IF NOT EXISTS patients (
-    id BIGINT AUTO_INCREMENT NOT NULL,
-	last_name VARCHAR(50) NOT NULL,
-	first_name VARCHAR(50) NOT NULL,
-	date_of_birth VARCHAR(10) NOT NULL,
-	sex CHAR(1) NOT NULL,
-	address VARCHAR(50) DEFAULT NULL,
-	phone_number VARCHAR(10) DEFAULT NULL,
-    PRIMARY KEY (id)
+                                        id BIGINT AUTO_INCREMENT NOT NULL,
+                                        last_name VARCHAR(50) NOT NULL,
+                                        first_name VARCHAR(50) NOT NULL,
+                                        date_of_birth VARCHAR(10) NOT NULL,
+                                        sex CHAR(1) NOT NULL,
+                                        address VARCHAR(50) DEFAULT NULL,
+                                        phone_number VARCHAR(10) DEFAULT NULL,
+                                        PRIMARY KEY (id)
 );
 
 insert into patients (last_name, first_name, date_of_birth, sex, address, phone_number) values ('Sauvain', 'Gwenora', '2021-01-14', 'F', '33 Commercial Lane', '6594182516');

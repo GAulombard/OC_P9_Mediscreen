@@ -1,20 +1,76 @@
 plugins {
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'io.freefair.lombok' version '4.1.6'
+    id 'java'
 }
 
-bootJar {
-    baseName = 'patient-api'
-    version =  '1.0.0'
+apply plugin: "jacoco"
+
+group = 'com.openclassrooms'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.1'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    //TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
+    testImplementation "org.jacoco:org.jacoco.agent:0.8.7"
 
     //SWAGGER2
     implementation 'io.springfox:springfox-swagger2:2.9.2' //doesn't work with the latest version
     implementation 'io.springfox:springfox-swagger-ui:2.9.2' //doesn't work with the latest version
 
-    implementation 'mysql:mysql-connector-java:8.0.25'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+}
 
+//test task:
+test {
+    //Starting with version 4.6, Gradle provides native support for executing tests on the JUnit Platform.
+    // To enable it, you just need to specify useJUnitPlatform() within a test task:
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+
+test.finalizedBy jacocoTestReport
+check.dependsOn jacocoTestCoverageVerification
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
 }

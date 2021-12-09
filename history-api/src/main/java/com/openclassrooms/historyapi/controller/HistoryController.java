@@ -2,7 +2,6 @@ package com.openclassrooms.historyapi.controller;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
 import com.openclassrooms.historyapi.service.HistoryService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @Slf4j
 @RequestMapping("/history")
-@Api(description = "History Api")
 public class HistoryController {
 
     @Autowired
@@ -27,7 +25,7 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns a note by id")
     public NoteDTO getNoteById(@ApiParam(
             value = "id",
-            example = "???"
+            example = "61b1daec21efc6385fca1920"
     ) @PathVariable("id") String id) {
         log.info("HTTP GET request received at /history/" + id);
 
@@ -42,7 +40,7 @@ public class HistoryController {
             value = "id",
             example = "2"
     ) @PathVariable("id") Integer id) {
-        log.info("HTTP GET request received at /history/list/"+id);
+        log.info("HTTP GET request received at /history/list/" + id);
 
         List<NoteDTO> resultList = historyService.readAllByPatientId(id);
 
@@ -51,12 +49,11 @@ public class HistoryController {
 
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "This URI allows to delete a note from the database")
-    public void delete(
-            @ApiParam(
-                    value = "id",
-                    example = "????"
-            )
-            @PathVariable("id") String id) {
+    public void delete(@ApiParam(
+            value = "id",
+            example = "61b1daec21efc6385fca1920"
+    )
+                       @PathVariable("id") String id) {
         log.info("HTTP GET request received at /history/delete/" + id);
 
         historyService.deleteById(id);
@@ -66,7 +63,7 @@ public class HistoryController {
     @PostMapping("/validate")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the note's form to save a new note in the database.")
-    public void validate(@Valid @RequestBody NoteDTO noteDTO) {
+    public void validate(@RequestBody NoteDTO noteDTO) {
         log.info("HTTP POST request received at /history/validate");
 
         historyService.create(noteDTO);
@@ -78,11 +75,11 @@ public class HistoryController {
     @ApiOperation(value = "This uri validate the note's form to update a patient's note in the database.")
     public void update(@ApiParam(
             value = "id",
-            example = "???"
-    ) @PathVariable("id") String id, @Valid @RequestBody NoteDTO noteDTO) {
+            example = "61b1daec21efc6385fca1920"
+    ) @PathVariable("id") String id, @RequestBody NoteDTO noteDTO) {
         log.info("HTTP POST request received at /history/update/" + id);
 
-       historyService.update(id,noteDTO);
+        historyService.update(id, noteDTO);
 
     }
 

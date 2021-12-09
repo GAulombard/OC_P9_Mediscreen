@@ -1,4 +1,4 @@
-package com.openclassrooms.historyapi.dto;
+package com.openclassrooms.uiapi.dto;
 
 import lombok.*;
 
