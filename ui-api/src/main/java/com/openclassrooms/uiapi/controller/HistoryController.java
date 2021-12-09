@@ -4,8 +4,8 @@ import com.openclassrooms.uiapi.dto.NoteDTO;
 import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.internal.constraintvalidators.bv.time.future.FutureValidatorForLocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+
 
 @Controller
 @Slf4j
@@ -62,6 +62,43 @@ public class HistoryController {
         }
 
         return "redirect:list";
+    }
+
+    @ApiOperation(value = "This URI returns the form page to update patient's note")
+    @GetMapping({"/update/{id}"})
+    public String getUpdateForm(@ApiParam(
+            value = "id",
+            example = "61b1daec21efc6385fca1920"
+    ) @PathVariable("id") String id, final Model model) {
+        log.info("HTTP GET request received at /history/update/" + id);
+
+        NoteDTO noteDTO = historyProxyFeign.getNoteById(id);
+
+        model.addAttribute("noteDTO", noteDTO);
+
+
+        return "history/update";
+    }
+
+    @ApiOperation(value = "This URI update patient's note history")
+    @PostMapping({"/update/{id}"})
+    public String update(@ApiParam(
+            value = "id",
+            example = "61b1daec21efc6385fca1920"
+    ) @PathVariable("id") String id, @ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult,Model model) {
+        log.info("HTTP POST request received at /history/update/" + id);
+
+        /*if (bindingResult.hasErrors()) {
+            log.error("ERROR(S): {}", bindingResult);
+            return "patient/update";
+        } else {
+            patientProxyFeign.update(id, patientDTO);
+            return "redirect:/patient/list";
+        }*/
+
+        historyProxyFeign.update(id,noteDTO);
+
+        return "redirect:/history/list";
     }
 
 }

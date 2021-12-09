@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org" class="h-100"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Mediscreen</title>
 </head>
+
+
 <body>
 
+<!--MENU-->
+<div th:replace="fragments/nav"></div>
+
+
+<!-- SECTION -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+                    <form class="form-patient" method="post" th:action="@{/history/update/{id}(id=${noteDTO.id})}" th:object="${noteDTO}">
+                        <h2 class="form-signup-heading">Add patient's history form</h2>
+                        <input type="hidden" th:field="*{patientId}" id="patientId">
+                        <!--                        <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="date">Date</label>
+                                                        <input th:field="*{date}" type="text" class="form-control" id="date" placeholder="aaaa-mm-dd">
+                                                        &lt;!&ndash;<span class="text-danger" th:errors="*{date}"></span>&ndash;&gt;
+                                                    </div>
+                                                </div>-->
+                        <div class="form-group">
+                            <label for="note">Note</label>
+                            <textarea th:field="*{note}" type="text" class="form-control" id="note" placeholder="Write your note here">
+                            </textarea>
+                            <!--<span class="text-danger" th:errors="*{note}"></span>-->
+                        </div>
+                        <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
+                        <button type="submit" class="btn btn-info">Save history</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div th:replace="fragments/foot"></div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>

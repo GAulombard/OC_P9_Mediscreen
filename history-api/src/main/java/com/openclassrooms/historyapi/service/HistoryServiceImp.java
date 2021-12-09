@@ -37,12 +37,19 @@ public class HistoryServiceImp implements HistoryService{
     public NoteDTO readById(String noteId) {
         log.info("** Process to read a note by id");
 
-        return null;
+        Note note = historyRepository.findNoteById(noteId);
+
+        return dtoConverter.NoteToNoteDTO(note);
     }
 
     @Override
     public void update(String noteId, NoteDTO noteDTO) {
         log.info("** Process to update a note");
+
+        noteDTO.setDate(LocalDate.now(Clock.systemUTC())); //todo:change that to get the real time zone
+        Note note = dtoConverter.NoteDTOToNote(noteDTO);
+
+        historyRepository.save(note);
 
     }
 

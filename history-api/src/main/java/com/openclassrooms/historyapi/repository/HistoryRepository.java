@@ -11,4 +11,6 @@ public interface HistoryRepository extends MongoRepository<Note,String> {
 
     List<Note> findNotesByPatientId(Integer patientId);
 
+    Note findNoteById(String id);
+
 }
