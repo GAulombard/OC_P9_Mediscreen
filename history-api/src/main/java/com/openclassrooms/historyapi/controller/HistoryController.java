@@ -83,5 +83,17 @@ public class HistoryController {
 
     }
 
+    @GetMapping("/patient/{id}")
+    @ApiOperation(value = "This URI returns the patient id given a note id")
+    public Integer getPatientId(@ApiParam(
+            value = "id",
+            example = "61b1daec21efc6385fca1920"
+    )
+                       @PathVariable("id") String id) {
+        log.info("HTTP GET request received at /history/patient/" + id);
+
+        return historyService.findPatientIdByNoteId(id);
+
+    }
 
 }

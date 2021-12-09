@@ -61,7 +61,7 @@ public class HistoryController {
             e.printStackTrace();
         }
 
-        return "redirect:list";
+        return "redirect:/patient/profile/"+noteDTO.getPatientId();
     }
 
     @ApiOperation(value = "This URI returns the form page to update patient's note")
@@ -98,7 +98,21 @@ public class HistoryController {
 
         historyProxyFeign.update(id,noteDTO);
 
-        return "redirect:/history/list";
+        return "redirect:/patient/profile/"+noteDTO.getPatientId();
+    }
+
+    @ApiOperation(value = "This URI allows to delete a note from the patient's history")
+    @GetMapping({"/delete/{id}"})
+    public String delete(@ApiParam(
+            value = "id",
+            example = "61b1daec21efc6385fca1920"
+    ) @PathVariable("id") String id, final Model model) {
+        log.info("HTTP GET request received at /history/delete/" + id);
+
+        Integer patientId = historyProxyFeign.getPatientId(id);
+        historyProxyFeign.delete(id);
+
+        return "redirect:/patient/profile/"+patientId;
     }
 
 }

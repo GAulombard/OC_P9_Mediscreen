@@ -57,6 +57,8 @@ public class HistoryServiceImp implements HistoryService{
     public void deleteById(String noteId) {
         log.info("** Process to delete a note by id");
 
+        historyRepository.deleteById(noteId);
+
     }
 
     @Override
@@ -72,5 +74,13 @@ public class HistoryServiceImp implements HistoryService{
                 .collect(Collectors.toList());
 
         return noteDTOList;
+    }
+
+    @Override
+    public Integer findPatientIdByNoteId(String noteId) {
+
+        Note note = historyRepository.findNoteById(noteId);
+
+        return note.getPatientId();
     }
 }

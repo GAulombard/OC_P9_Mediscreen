@@ -18,4 +18,6 @@ public interface HistoryService {
 
     List<NoteDTO> readAllByPatientId(Integer patientId);
 
+    Integer findPatientIdByNoteId(String noteId);
+
 }

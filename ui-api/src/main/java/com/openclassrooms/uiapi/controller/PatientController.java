@@ -1,6 +1,8 @@
 package com.openclassrooms.uiapi.controller;
 
+import com.openclassrooms.uiapi.dto.NoteDTO;
 import com.openclassrooms.uiapi.dto.PatientDTO;
+import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
 import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -20,6 +23,9 @@ public class PatientController {
 
     @Autowired
     private PatientProxyFeign patientProxyFeign;
+
+    @Autowired
+    private HistoryProxyFeign historyProxyFeign;
 
     @ApiOperation(value = "This URI returns the list of all patients")
     @GetMapping({"/list"})
@@ -122,6 +128,9 @@ public class PatientController {
         log.info("HTTP GET request received at /patient/profile/" + id);
 
         PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
+        List<NoteDTO> noteDTOList = historyProxyFeign.getAll(id);
+
+        model.addAttribute("noteDTOList",noteDTOList);
         model.addAttribute("patientDTO", patientDTO);
 
         return "/patient/profile";

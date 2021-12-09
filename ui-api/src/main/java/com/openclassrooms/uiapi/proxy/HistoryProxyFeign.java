@@ -27,4 +27,7 @@ public interface HistoryProxyFeign {
     @PostMapping({"/update/{id}"})
     void update(@PathVariable("id") String id, @RequestBody NoteDTO noteDTO);
 
+    @GetMapping({"patient/{id}"})
+    Integer getPatientId(@PathVariable("id") String id);
+
 }
