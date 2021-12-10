@@ -14,12 +14,12 @@ public interface HistoryService {
 
     NoteDTO readById(String noteId) throws NoteNotFoundException;
 
-    void update(String noteId, NoteDTO noteDTO);
+    void update(String noteId, NoteDTO noteDTO) throws NoteNotFoundException;
 
-    void deleteById(String noteId);
+    void deleteById(String noteId) throws NoteNotFoundException;
 
     List<NoteDTO> readAllByPatientId(Integer patientId);
 
-    Integer findPatientIdByNoteId(String noteId);
+    Integer findPatientIdByNoteId(String noteId) throws NoteNotFoundException;
 
 }

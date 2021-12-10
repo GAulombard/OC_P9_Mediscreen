@@ -52,8 +52,10 @@ public class HistoryServiceImp implements HistoryService{
     }
 
     @Override
-    public void update(String noteId, NoteDTO noteDTO) {
+    public void update(String noteId, NoteDTO noteDTO) throws NoteNotFoundException {
         log.info("** Process to update a note");
+
+        if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
         noteDTO.setDate(LocalDate.now(Clock.systemUTC())); //todo:change that to get the real time zone
         Note note = dtoConverter.NoteDTOToNote(noteDTO);
@@ -63,8 +65,10 @@ public class HistoryServiceImp implements HistoryService{
     }
 
     @Override
-    public void deleteById(String noteId) {
+    public void deleteById(String noteId) throws NoteNotFoundException {
         log.info("** Process to delete a note by id");
+
+        if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
         historyRepository.deleteById(noteId);
 
@@ -84,7 +88,9 @@ public class HistoryServiceImp implements HistoryService{
     }
 
     @Override
-    public Integer findPatientIdByNoteId(String noteId) {
+    public Integer findPatientIdByNoteId(String noteId) throws NoteNotFoundException {
+
+        if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
         Note note = historyRepository.findNoteById(noteId);
 

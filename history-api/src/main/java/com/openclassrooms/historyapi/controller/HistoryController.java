@@ -53,7 +53,7 @@ public class HistoryController {
             value = "id",
             example = "61b1daec21efc6385fca1920"
     )
-                       @PathVariable("id") String id) {
+                       @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/delete/" + id);
 
         historyService.deleteById(id);
@@ -76,7 +76,7 @@ public class HistoryController {
     public void update(@ApiParam(
             value = "id",
             example = "61b1daec21efc6385fca1920"
-    ) @PathVariable("id") String id, @RequestBody NoteDTO noteDTO) {
+    ) @PathVariable("id") String id, @RequestBody NoteDTO noteDTO) throws NoteNotFoundException {
         log.info("HTTP POST request received at /history/update/" + id);
 
         historyService.update(id, noteDTO);
@@ -89,7 +89,7 @@ public class HistoryController {
             value = "id",
             example = "61b1daec21efc6385fca1920"
     )
-                       @PathVariable("id") String id) {
+                       @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/patient/" + id);
 
         return historyService.findPatientIdByNoteId(id);
