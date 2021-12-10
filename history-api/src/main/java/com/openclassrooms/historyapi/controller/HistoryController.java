@@ -2,16 +2,15 @@ package com.openclassrooms.historyapi.controller;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
 import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
+import com.openclassrooms.historyapi.exception.NoteNotFoundException;
 import com.openclassrooms.historyapi.service.HistoryService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +26,7 @@ public class HistoryController {
     public NoteDTO getNoteById(@ApiParam(
             value = "id",
             example = "61b1daec21efc6385fca1920"
-    ) @PathVariable("id") String id) {
+    ) @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/" + id);
 
         NoteDTO noteDTO = historyService.readById(id);

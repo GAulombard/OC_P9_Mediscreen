@@ -2,6 +2,7 @@ package com.openclassrooms.historyapi.service;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
 import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
+import com.openclassrooms.historyapi.exception.NoteNotFoundException;
 import com.openclassrooms.historyapi.model.Note;
 import com.openclassrooms.historyapi.repository.HistoryRepository;
 import com.openclassrooms.historyapi.util.DTOConverter;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Clock;
 import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,8 +41,10 @@ public class HistoryServiceImp implements HistoryService{
     }
 
     @Override
-    public NoteDTO readById(String noteId) {
+    public NoteDTO readById(String noteId) throws NoteNotFoundException {
         log.info("** Process to read a note by id");
+
+        if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
         Note note = historyRepository.findNoteById(noteId);
 
