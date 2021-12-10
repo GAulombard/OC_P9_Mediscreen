@@ -15,6 +15,18 @@ services:
     networks:
       - web-server
     restart: always
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27018:27017
+    volumes:
+      - mediscreen_mongo:/data/db
+    networks:
+      - web-server
+    restart: always
+
   ui-api:
     environment:
       - PROXY_PATIENT=patient-api:8081/patient
@@ -28,6 +40,7 @@ services:
     ports:
       - "8080:8080"
     container_name: ui-api
+
   patient-api:
     build: patient-api
     image: patient-api-1.0.0.jar
@@ -44,6 +57,7 @@ services:
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysql
+
   history-api:
     build: history-api
     image: history-api-1.0.0.jar
@@ -62,6 +76,8 @@ services:
     ports:
       - "8083:8083"
     container_name: assessment-api
+    depends_on:
+      - mongo
 
 networks:
   web-server:
@@ -69,3 +85,4 @@ networks:
 
 volumes:
   mediscreen_mysql:
+  mediscreen_mongo:

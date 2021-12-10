@@ -1,6 +1,7 @@
 package com.openclassrooms.historyapi.service;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
+import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 @Service
 public interface HistoryService {
 
-    void create(NoteDTO noteDTO);
+    void create(NoteDTO noteDTO) throws NoteAlreadyExistsException;
 
     NoteDTO readById(String noteId);
 

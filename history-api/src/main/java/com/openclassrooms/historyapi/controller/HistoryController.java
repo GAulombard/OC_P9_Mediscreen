@@ -1,6 +1,7 @@
 package com.openclassrooms.historyapi.controller;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
+import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
 import com.openclassrooms.historyapi.service.HistoryService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -63,7 +64,7 @@ public class HistoryController {
     @PostMapping("/validate")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the note's form to save a new note in the database.")
-    public void validate(@RequestBody NoteDTO noteDTO) {
+    public void validate(@RequestBody NoteDTO noteDTO) throws NoteAlreadyExistsException {
         log.info("HTTP POST request received at /history/validate");
 
         historyService.create(noteDTO);

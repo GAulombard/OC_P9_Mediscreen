@@ -1,6 +1,7 @@
 package com.openclassrooms.historyapi.service;
 
 import com.openclassrooms.historyapi.dto.NoteDTO;
+import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
 import com.openclassrooms.historyapi.model.Note;
 import com.openclassrooms.historyapi.repository.HistoryRepository;
 import com.openclassrooms.historyapi.util.DTOConverter;
@@ -25,11 +26,17 @@ public class HistoryServiceImp implements HistoryService{
     private DTOConverter dtoConverter;
 
     @Override
-    public void create(NoteDTO noteDTO) {
+    public void create(NoteDTO noteDTO) throws NoteAlreadyExistsException {
         log.info("** Process to save a new note in the database");
 
         noteDTO.setDate(LocalDate.now(Clock.systemUTC())); //todo:change that to get the real time zone
-        historyRepository.save(dtoConverter.NoteDTOToNote(noteDTO));
+        Note noteToSave = dtoConverter.NoteDTOToNote(noteDTO);
+
+        if(historyRepository.existsByNoteAndPatientIdAndDate(noteToSave.getNote(),noteToSave.getPatientId(),noteToSave.getDate())) {
+            throw new NoteAlreadyExistsException("Note already exists");
+        }
+
+        historyRepository.save(noteToSave);
 
     }
 
@@ -66,8 +73,6 @@ public class HistoryServiceImp implements HistoryService{
         log.info("** Process read all note given a patient's id");
 
         List<Note> noteList = historyRepository.findNotesByPatientId(patientId);
-
-        log.info(""+noteList);
 
         List<NoteDTO> noteDTOList = noteList.stream()
                 .map(note -> dtoConverter.NoteToNoteDTO(note))
