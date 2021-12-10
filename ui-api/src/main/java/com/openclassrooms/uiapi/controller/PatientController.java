@@ -80,7 +80,13 @@ public class PatientController {
     ) @PathVariable("id") Integer id, final Model model) {
         log.info("HTTP GET request received at /patient/update/" + id);
 
-        PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
+        PatientDTO patientDTO = null;
+        try {
+            patientDTO = patientProxyFeign.getPatientById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         model.addAttribute("patientDTO", patientDTO);
 
 
@@ -99,7 +105,11 @@ public class PatientController {
             log.error("ERROR(S): {}", bindingResult);
             return "patient/update";
         } else {
-            patientProxyFeign.update(id, patientDTO);
+            try {
+                patientProxyFeign.update(id, patientDTO);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "redirect:/patient/list";
         }
     }
@@ -129,8 +139,15 @@ public class PatientController {
     ) @PathVariable("id") Integer id, Model model) {
         log.info("HTTP GET request received at /patient/profile/" + id);
 
-        PatientDTO patientDTO = patientProxyFeign.getPatientById(id);
-        List<NoteDTO> noteDTOList = historyProxyFeign.getAll(id);
+        PatientDTO patientDTO = null;
+        List<NoteDTO> noteDTOList = null;
+
+        try {
+            patientDTO = patientProxyFeign.getPatientById(id);
+            noteDTOList = historyProxyFeign.getAll(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         model.addAttribute("noteDTOList",noteDTOList);
         model.addAttribute("patientDTO", patientDTO);

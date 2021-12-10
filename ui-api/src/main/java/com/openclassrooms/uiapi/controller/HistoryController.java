@@ -3,6 +3,7 @@ package com.openclassrooms.uiapi.controller;
 import com.openclassrooms.uiapi.dto.NoteDTO;
 import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
+import feign.FeignException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,13 @@ public class HistoryController {
     ) @PathVariable("id") String id, final Model model) {
         log.info("HTTP GET request received at /history/update/" + id);
 
-        NoteDTO noteDTO = historyProxyFeign.getNoteById(id);
+        NoteDTO noteDTO = null;
+
+        try {
+            noteDTO = historyProxyFeign.getNoteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         model.addAttribute("noteDTO", noteDTO);
 
@@ -88,17 +95,8 @@ public class HistoryController {
     ) @PathVariable("id") String id, @ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult,Model model) {
         log.info("HTTP POST request received at /history/update/" + id);
 
-        /*if (bindingResult.hasErrors()) {
-            log.error("ERROR(S): {}", bindingResult);
-            return "patient/update";
-        } else {
-            patientProxyFeign.update(id, patientDTO);
-            return "redirect:/patient/list";
-        }*/
-
         try {
-            historyProxyFeign.update(id,noteDTO); //todo:
-            log.info("Connection established");
+            historyProxyFeign.update(id,noteDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,8 +112,14 @@ public class HistoryController {
     ) @PathVariable("id") String id, final Model model) {
         log.info("HTTP GET request received at /history/delete/" + id);
 
-        Integer patientId = historyProxyFeign.getPatientId(id);
-        historyProxyFeign.delete(id);
+        Integer patientId = null;
+
+        try {
+            patientId = historyProxyFeign.getPatientId(id);
+            historyProxyFeign.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "redirect:/patient/profile/"+patientId;
     }
