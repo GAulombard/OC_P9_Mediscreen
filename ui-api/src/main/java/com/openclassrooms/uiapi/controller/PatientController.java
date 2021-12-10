@@ -37,7 +37,10 @@ public class PatientController {
         try {
             model.addAttribute("patients", patientProxyFeign.getAll());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         return "patient/list";
@@ -55,7 +58,7 @@ public class PatientController {
 
     @ApiOperation(value = "This URI validate the form to add a new patient to the database")
     @PostMapping({"/validate"})
-    public String validateAddForm(@Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult) {
+    public String validateAddForm(@Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, Model model) {
         log.info("HTTP POST request received at /patient/validate");
 
         if (bindingResult.hasErrors()) {
@@ -66,7 +69,10 @@ public class PatientController {
         try {
             patientProxyFeign.validate(patientDTO);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         return "redirect:list";
@@ -84,7 +90,10 @@ public class PatientController {
         try {
             patientDTO = patientProxyFeign.getPatientById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         model.addAttribute("patientDTO", patientDTO);
@@ -108,7 +117,10 @@ public class PatientController {
             try {
                 patientProxyFeign.update(id, patientDTO);
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("" + e.getMessage());
+                //model.addAttribute("errorStatus",e.getMessage());
+                model.addAttribute("errorMsg", e.toString());
+                return "error/error";
             }
             return "redirect:/patient/list";
         }
@@ -119,13 +131,16 @@ public class PatientController {
     public String delete(@ApiParam(
             value = "id",
             example = "2"
-    ) @PathVariable("id") Integer id) {
+    ) @PathVariable("id") Integer id, Model model) {
         log.info("HTTP GET request received at /patient/delete/" + id);
 
         try {
             patientProxyFeign.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         return "redirect:/patient/list";
@@ -146,10 +161,13 @@ public class PatientController {
             patientDTO = patientProxyFeign.getPatientById(id);
             noteDTOList = historyProxyFeign.getAll(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
-        model.addAttribute("noteDTOList",noteDTOList);
+        model.addAttribute("noteDTOList", noteDTOList);
         model.addAttribute("patientDTO", patientDTO);
 
         return "patient/profile";

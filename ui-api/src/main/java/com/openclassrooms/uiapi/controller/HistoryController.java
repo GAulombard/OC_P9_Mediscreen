@@ -27,12 +27,15 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns the history list of a patient")
     @GetMapping({"/list/{id}"})
     public String getList(@PathVariable("id") Integer id, Model model) {
-        log.info("HTTP GET request received at /history/list/"+id);
+        log.info("HTTP GET request received at /history/list/" + id);
 
         try {
             model.addAttribute("historyList", historyProxyFeign.getAll(id));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         return "history/list";
@@ -41,9 +44,9 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns the form page to add a new patient's history")
     @GetMapping({"/add/{id}"})
     public String getAddForm(@PathVariable("id") Integer patientId, Model model) {
-        log.info("HTTP GET request received at /history/add/"+patientId);
+        log.info("HTTP GET request received at /history/add/" + patientId);
 
-        NoteDTO  noteDTO = new NoteDTO();
+        NoteDTO noteDTO = new NoteDTO();
         noteDTO.setPatientId(patientId);
 
         model.addAttribute("noteDTO", noteDTO);
@@ -53,16 +56,19 @@ public class HistoryController {
 
     @ApiOperation(value = "This URI validate the form to add a new patient history to the database")
     @PostMapping({"/validate"})
-    public String validateAddForm(@ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult) {
+    public String validateAddForm(@ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult, Model model) {
         log.info("HTTP POST request received at /history/validate");
 
         try {
             historyProxyFeign.validate(noteDTO);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
-        return "redirect:/patient/profile/"+noteDTO.getPatientId();
+        return "redirect:/patient/profile/" + noteDTO.getPatientId();
     }
 
     @ApiOperation(value = "This URI returns the form page to update patient's note")
@@ -78,7 +84,10 @@ public class HistoryController {
         try {
             noteDTO = historyProxyFeign.getNoteById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
         model.addAttribute("noteDTO", noteDTO);
@@ -92,16 +101,19 @@ public class HistoryController {
     public String update(@ApiParam(
             value = "id",
             example = "61b1daec21efc6385fca1920"
-    ) @PathVariable("id") String id, @ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult,Model model) {
+    ) @PathVariable("id") String id, @ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult, Model model) {
         log.info("HTTP POST request received at /history/update/" + id);
 
         try {
-            historyProxyFeign.update(id,noteDTO);
+            historyProxyFeign.update(id, noteDTO);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
-        return "redirect:/patient/profile/"+noteDTO.getPatientId();
+        return "redirect:/patient/profile/" + noteDTO.getPatientId();
     }
 
     @ApiOperation(value = "This URI allows to delete a note from the patient's history")
@@ -118,10 +130,13 @@ public class HistoryController {
             patientId = historyProxyFeign.getPatientId(id);
             historyProxyFeign.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
         }
 
-        return "redirect:/patient/profile/"+patientId;
+        return "redirect:/patient/profile/" + patientId;
     }
 
 }
