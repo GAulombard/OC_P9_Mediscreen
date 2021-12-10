@@ -1,7 +1,9 @@
 <!doctype html>
 
-<html lang="en" xmlns:th="http://wwww.thymeleaf.org" class="h-100"
-      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="utf-8">
@@ -35,6 +37,7 @@
                        onclick="if(!(confirm('Are you sure you want to delete this patient ?'))) return false">Delete
                     </a>
                     <p class="card-text">
+                    <div>Id: <th:block th:text="${patientDTO.id}"></th:block></div>
                     <div>Birth-date: <th:block th:text="${patientDTO.birthDate}"></th:block></div>
                     <div>Gender: <th:block th:text="${patientDTO.sex}"></th:block></div>
                     <div>Address: <th:block th:text="${patientDTO.address}"></th:block></div>

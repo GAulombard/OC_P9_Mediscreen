@@ -135,7 +135,7 @@ public class PatientController {
         model.addAttribute("noteDTOList",noteDTOList);
         model.addAttribute("patientDTO", patientDTO);
 
-        return "/patient/profile";
+        return "patient/profile";
     }
 
 }

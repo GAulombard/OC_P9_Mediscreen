@@ -96,7 +96,12 @@ public class HistoryController {
             return "redirect:/patient/list";
         }*/
 
-        historyProxyFeign.update(id,noteDTO);
+        try {
+            historyProxyFeign.update(id,noteDTO); //todo:
+            log.info("Connection established");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "redirect:/patient/profile/"+noteDTO.getPatientId();
     }
