@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -94,6 +95,13 @@ public class HistoryController {
 
         return historyService.findPatientIdByNoteId(id);
 
+    }
+
+    @GetMapping("/count")
+    public Map<Integer,Integer> getCountNotePerPatient() {
+        log.info("HTTP GET request received at /history/count");
+
+        return historyService.countNotesPerPatient();
     }
 
 }

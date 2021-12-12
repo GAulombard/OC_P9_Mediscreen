@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 @FeignClient(value = "history-api",url="${proxy.history}")
 public interface HistoryProxyFeign {
@@ -29,5 +30,8 @@ public interface HistoryProxyFeign {
 
     @GetMapping({"patient/{id}"})
     Integer getPatientId(@PathVariable("id") String id);
+
+    @GetMapping({"count"})
+    Map<Integer,Integer> getCountNotePerPatient();
 
 }

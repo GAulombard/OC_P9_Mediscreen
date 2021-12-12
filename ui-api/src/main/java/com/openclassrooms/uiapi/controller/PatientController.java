@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -32,7 +33,9 @@ public class PatientController {
     public String getList(final Model model) {
         log.info("HTTP GET request received at /patient/list");
 
-        //todo: add counter of all notes per patient, using map<,> seems to be a good way. See aggregation for mongo db
+        //todo: add counter of all notes per patient, using map<,> seems to be a good way. See aggregations for mongo db
+        //Map<Integer,Integer> countNotePerPatient = historyProxyFeign.getCountNotePerPatient();
+        //log.info(""+countNotePerPatient);
 
         try {
             model.addAttribute("patients", patientProxyFeign.getAll());
@@ -68,6 +71,7 @@ public class PatientController {
 
         try {
             patientProxyFeign.validate(patientDTO);
+            log.info("New patient saved: "+patientDTO.getFirstName()+" "+patientDTO.getLastName());
         } catch (Exception e) {
             log.error("" + e.getMessage());
             //model.addAttribute("errorStatus",e.getMessage());

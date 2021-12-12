@@ -6,6 +6,7 @@ import com.openclassrooms.historyapi.exception.NoteNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface HistoryService {
@@ -21,5 +22,7 @@ public interface HistoryService {
     List<NoteDTO> readAllByPatientId(Integer patientId);
 
     Integer findPatientIdByNoteId(String noteId) throws NoteNotFoundException;
+
+    Map<Integer,Integer> countNotesPerPatient();
 
 }

@@ -32,14 +32,20 @@ services:
       - PROXY_PATIENT=patient-api:8081/patient
       - PROXY_HISTORY=history-api:8082/history
       - PROXY_ASSESSMENT=assessment-api:8083/assessment
-    build: ui-api
-    image: ui-api-1.0.0.jar
+    build:
+      context: ./ui-api
     networks:
       - web-server
     restart: always
     ports:
       - "8080:8080"
     container_name: ui-api
+    depends_on:
+      - patient-api
+      - mysql
+      - mongo
+      - assessment-api
+      - history-api
 
   patient-api:
     build: patient-api

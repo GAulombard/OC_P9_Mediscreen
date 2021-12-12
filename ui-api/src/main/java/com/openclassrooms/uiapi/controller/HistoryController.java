@@ -3,6 +3,7 @@ package com.openclassrooms.uiapi.controller;
 import com.openclassrooms.uiapi.dto.NoteDTO;
 import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
+import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import feign.FeignException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -23,6 +24,9 @@ public class HistoryController {
 
     @Autowired
     private HistoryProxyFeign historyProxyFeign;
+
+    @Autowired
+    private PatientProxyFeign patientProxyFeign;
 
     @ApiOperation(value = "This URI returns the history list of a patient")
     @GetMapping({"/list/{id}"})
@@ -45,6 +49,15 @@ public class HistoryController {
     @GetMapping({"/add/{id}"})
     public String getAddForm(@PathVariable("id") Integer patientId, Model model) {
         log.info("HTTP GET request received at /history/add/" + patientId);
+
+        try {
+            PatientDTO patientDTO = patientProxyFeign.getPatientById(patientId);
+        } catch (Exception e) {
+            log.error("" + e.getMessage());
+            //model.addAttribute("errorStatus",e.getMessage());
+            model.addAttribute("errorMsg", e.toString());
+            return "error/error";
+        }
 
         NoteDTO noteDTO = new NoteDTO();
         noteDTO.setPatientId(patientId);
