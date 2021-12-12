@@ -115,7 +115,7 @@ public class HistoryServiceImp implements HistoryService{
         Map<Integer, Integer> mapNoteCounters = new HashMap<>();
 
         for( NoteCounter noteCounter : noteCounters ) {
-            mapNoteCounters.put( noteCounter.getPatientId(), noteCounter.getNrbNote());
+            mapNoteCounters.put( noteCounter.getPatient_id(), noteCounter.getCount());
         }
 
         return mapNoteCounters;

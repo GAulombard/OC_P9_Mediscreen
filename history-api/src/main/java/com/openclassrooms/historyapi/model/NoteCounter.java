@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class NoteCounter {
 
-    private Integer patientId;
-    private Integer nrbNote;
+    private Integer patient_id;
+    private Integer count;
 
 }

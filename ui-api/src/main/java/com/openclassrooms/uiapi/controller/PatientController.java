@@ -34,10 +34,10 @@ public class PatientController {
         log.info("HTTP GET request received at /patient/list");
 
         //todo: add counter of all notes per patient, using map<,> seems to be a good way. See aggregations for mongo db
-        //Map<Integer,Integer> countNotePerPatient = historyProxyFeign.getCountNotePerPatient();
-        //log.info(""+countNotePerPatient);
 
         try {
+            Map<Integer,Integer> countNotePerPatient = historyProxyFeign.getCountNotePerPatient();
+            model.addAttribute("countNotePerPatient",countNotePerPatient);
             model.addAttribute("patients", patientProxyFeign.getAll());
         } catch (Exception e) {
             log.error("" + e.getMessage());

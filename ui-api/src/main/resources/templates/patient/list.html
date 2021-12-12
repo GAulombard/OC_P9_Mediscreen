@@ -54,7 +54,7 @@
               <td th:text="${patient.sex}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
               <td th:text="${patient.address}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
               <td th:text="${patient.phoneNumber}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td></td>
+              <td th:text="${countNotePerPatient.get(patient.id)} ?: '0'" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'">0</td>
               <td>
                 <a th:href="'/patient/update/'+${patient.id}"
                    class="btn btn-info btn-sm">Update
