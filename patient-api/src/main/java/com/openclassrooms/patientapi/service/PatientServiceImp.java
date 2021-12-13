@@ -27,7 +27,7 @@ public class PatientServiceImp implements PatientService {
     public List<Patient> getAll() {
         log.info("** Process to get all patients");
 
-        return patientRepository.findAll(Sort.by(Sort.Direction.ASC,"lastName"));
+        return patientRepository.findAll(Sort.by(Sort.Direction.ASC,"id"));
 
     }
 

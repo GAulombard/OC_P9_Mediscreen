@@ -4,12 +4,12 @@
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-  <title>Mediscreen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Mediscreen</title>
 </head>
 
 
@@ -21,58 +21,71 @@
 
 <!-- SECTION -->
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-lg-12">
-      <div class="card my-3 shadow">
-        <div class="card-body">
-          <h2 class="card-title">Patient list</h2>
-          <div class="d-flex justify-content-around">
-          <div class="p-2"><a th:href="@{/patient/add}"
-                              class="btn btn-info btn-md">
-            Add new patient
-          </a></div>
-          </div>
-          <table class="table table-hover">
-            <thead class="thead-light">
-            <tr>
-              <th class="text-left">Last Name</th>
-              <th class="text-left">First name</th>
-              <th class="text-left">Birthdate</th>
-              <th class="text-left">Gender</th>
-              <th class="text-left">Address</th>
-              <th class="text-left">Phone</th>
-              <th class="text-left">Note</th>
-              <th class="text-left"></th>
-              <th class="text-left"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="patient: ${patients}">
-              <td th:text="${patient.lastName}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${patient.firstName}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${patient.birthDate}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${patient.sex}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${patient.address}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${patient.phoneNumber}" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
-              <td th:text="${countNotePerPatient.get(patient.id)} ?: '0'" style="cursor: pointer" th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'">0</td>
-              <td>
-                <a th:href="'/patient/update/'+${patient.id}"
-                   class="btn btn-info btn-sm">Update
-                </a>
-              </td>
-              <td>
-                <a th:href="'/patient/delete/'+${patient.id}"
-                   class="btn btn-danger btn-sm"
-                   onclick="if(!(confirm('Are you sure you want to delete this patient ?'))) return false">Delete
-                </a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                        <h2 class="card-title">Patient list</h2>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <div class="p-2"><a th:href="@{/patient/add}"
+                                                class="btn btn-info btn-md">
+                                Add new patient
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th class="text-left">Last Name</th>
+                            <th class="text-left">First name</th>
+                            <th class="text-left">Birthdate</th>
+                            <th class="text-left">Gender</th>
+                            <th class="text-left">Address</th>
+                            <th class="text-left">Phone</th>
+                            <th class="text-left">Note</th>
+                            <th class="text-left"></th>
+                            <th class="text-left"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="patient: ${patients}">
+                            <td th:text="${patient.lastName}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${patient.firstName}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${patient.birthDate}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${patient.sex}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${patient.address}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${patient.phoneNumber}" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'"></td>
+                            <td th:text="${countNotePerPatient.get(patient.id)} ?: '0'" style="cursor: pointer"
+                                th:onclick="'javascript:rowClicked(\''+${patient.id}+'\');'">0
+                            </td>
+                            <td>
+                                <a th:href="'/patient/update/'+${patient.id}"
+                                   class="btn btn-info btn-sm">Update
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="'/patient/delete/'+${patient.id}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="if(!(confirm('Are you sure you want to delete this patient ?'))) return false">Delete
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <!-- FOOTER -->
@@ -80,9 +93,9 @@
 
 
 <script>
-  function rowClicked(value) {
-    location.href = "/patient/profile/" + value;
-  }
+    function rowClicked(value) {
+        location.href = "/patient/profile/" + value;
+    }
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
