@@ -98,6 +98,7 @@ public class HistoryController {
     }
 
     @GetMapping("/count")
+    @ApiOperation(value = "This URI returns the number of notes by patient id.")
     public Map<Integer,Integer> getCountNotePerPatient() {
         log.info("HTTP GET request received at /history/count");
 

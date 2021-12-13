@@ -9,10 +9,10 @@ CREATE TABLE IF NOT EXISTS patients (
                                         PRIMARY KEY (id)
 );
 
-insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (1,'Ellph', 'Russ', '2021-04-05', 'M', '0002 Moulton Pass', '1625035718');
-insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (2,'Rodell', 'Bernadette', '2021-01-23', 'F', '484 High Crossing Alley', '2325368619');
-insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (3,'Sauvain', 'Gwenora', '2021-01-14', 'F', '33 Commercial Lane', '6594182516');
-insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (4,'Sellar', 'Debi', '2021-06-06', 'F', '0148 Blaine Road', '8142768524');
+insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (1,'TestNone', 'Test', '1966-12-31', 'F', '1 Brookside St', '1002223333');
+insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (2,'TestBorderline', 'Test', '1945-06-24', 'M', '2 High St', '2003334444');
+insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (3,'TestInDanger', 'Test', '2004-06-18', 'M', '3 Club Road', '3004445555');
+insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (4,'TestEarlyOnset', 'Test', '2002-06-28', 'F', '4 Valley Dr', '4005556666');
 insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (5,'Braney', 'Alena', '2021-05-24', 'F', '1 Golf Hill', '9806688114');
 insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (6,'Romaynes', 'Cathie', '2021-06-13', 'F', '42819 Columbus Hill', '7169836214');
 insert ignore into patients (id,last_name, first_name, date_of_birth, sex, address, phone_number) values (7,'Cartner', 'Hartwell', '2021-03-12', 'M', '02 Milwaukee Pass', '8674511069');

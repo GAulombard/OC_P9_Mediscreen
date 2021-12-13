@@ -86,7 +86,7 @@ public class HistoryServiceImp implements HistoryService{
 
     @Override
     public List<NoteDTO> readAllByPatientId(Integer patientId) {
-        log.info("** Process read all note given a patient's id");
+        log.info("** Process to read all note given a patient's id");
 
         List<Note> noteList = historyRepository.findNotesByPatientId(patientId);
 
@@ -99,6 +99,7 @@ public class HistoryServiceImp implements HistoryService{
 
     @Override
     public Integer findPatientIdByNoteId(String noteId) throws NoteNotFoundException {
+        log.info("** Process to find a patient's id by note id");
 
         if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
@@ -109,6 +110,8 @@ public class HistoryServiceImp implements HistoryService{
 
     @Override
     public Map<Integer, Integer> countNotesPerPatient() {
+        log.info("** Process to count notes by patient's id");
+
         AggregationResults<NoteCounter> aggregationResults = historyRepository.countNotesPerPatient();
 
         List<NoteCounter> noteCounters = aggregationResults.getMappedResults();
