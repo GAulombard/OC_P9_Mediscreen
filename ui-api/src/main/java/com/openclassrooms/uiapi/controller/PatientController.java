@@ -1,7 +1,9 @@
 package com.openclassrooms.uiapi.controller;
 
+import com.openclassrooms.uiapi.dto.AssessmentDTO;
 import com.openclassrooms.uiapi.dto.NoteDTO;
 import com.openclassrooms.uiapi.dto.PatientDTO;
+import com.openclassrooms.uiapi.proxy.AssessmentProxyFeign;
 import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
 import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +29,9 @@ public class PatientController {
 
     @Autowired
     private HistoryProxyFeign historyProxyFeign;
+
+    @Autowired
+    private AssessmentProxyFeign assessmentProxyFeign;
 
     @ApiOperation(value = "This URI returns the list of all patients")
     @GetMapping({"/list"})
@@ -160,10 +165,12 @@ public class PatientController {
 
         PatientDTO patientDTO = null;
         List<NoteDTO> noteDTOList = null;
+        AssessmentDTO assessmentDTO = null;
 
         try {
             patientDTO = patientProxyFeign.getPatientById(id);
             noteDTOList = historyProxyFeign.getAll(id);
+            assessmentDTO = assessmentProxyFeign.getPatientAssessment(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
             //model.addAttribute("errorStatus",e.getMessage());
@@ -173,6 +180,7 @@ public class PatientController {
 
         model.addAttribute("noteDTOList", noteDTOList);
         model.addAttribute("patientDTO", patientDTO);
+        model.addAttribute("assessmentDTO",assessmentDTO);
 
         return "patient/profile";
     }

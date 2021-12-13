@@ -74,6 +74,9 @@ services:
       - "8082:8082"
     container_name: history-api
   assessment-api:
+    environment:
+      - PROXY_PATIENT=patient-api:8081/patient
+      - PROXY_HISTORY=history-api:8082/history
     build: assessment-api
     image: assessment-api-1.0.0.jar
     networks:

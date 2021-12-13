@@ -27,6 +27,7 @@
         <div class="col-12 col-lg-12">
             <div class="card my-3 shadow">
                 <div class="card-body">
+                    <div>
                     <h2 class="card-title" th:text="${patientDTO.lastName}+' '+${patientDTO.firstName}"></h2>
                     <button type="button" class="btn btn-info btn-sm" onclick="javascript:history.back()">Cancel</button>
                     <a th:href="'/patient/update/'+${patientDTO.id}"
@@ -43,6 +44,8 @@
                     <div>Address: <th:block th:text="${patientDTO.address}"></th:block></div>
                     <div>Phone: <th:block th:text="${patientDTO.phoneNumber}"></th:block></div>
                     </p>
+                    </div>
+                    <div>Diabetes assessment is: <th:block th:text="${assessmentDTO.diabetesRiskLevel}"></th:block></div>
                 </div>
             </div>
             <div class="card my-3 shadow">
@@ -62,7 +65,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="note: ${noteDTOList}">
-                            <td th:text="${note.date}"></td>
+                            <td th:text="${note.date}" width="110"></td>
                             <td th:text="${note.note}"></td>
                             <td>
                                 <a th:href="'/history/update/'+${note.id}"
