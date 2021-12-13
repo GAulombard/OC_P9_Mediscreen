@@ -30,6 +30,8 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.6.1'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
     //TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'

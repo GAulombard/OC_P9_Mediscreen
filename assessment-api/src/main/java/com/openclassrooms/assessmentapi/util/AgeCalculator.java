@@ -12,7 +12,7 @@ public class AgeCalculator {
 
     public int getAgeFromBirthDate(LocalDate birthDate) {
 
-        int age = Period.between(birthDate, LocalDate.now()).getDays();
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
 
         if(birthDate.isAfter(LocalDate.now())) throw new IllegalArgumentException("ERROR: Birthdate can't after today's date");
 
