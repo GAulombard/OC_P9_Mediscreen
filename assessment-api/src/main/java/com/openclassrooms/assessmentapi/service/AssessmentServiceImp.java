@@ -54,6 +54,7 @@ public class AssessmentServiceImp implements AssessmentService{
 
     @Override
     public List<PatientDTO> getAllPatientByFamilyName(String familyName) {
+        log.info("** Process to get list of patient by family name");
 
         return patientProxyFeign.getAllByLastName(familyName);
     }

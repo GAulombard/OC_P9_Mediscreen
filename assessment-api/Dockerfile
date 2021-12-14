@@ -9,4 +9,4 @@ FROM gradle:7-jdk11
 WORKDIR ./tmp/app
 COPY . .
 RUN gradle bootJar
-ENTRYPOINT [ "java","-jar", "./build/libs/assessmebt-api-1.0.0.jar"]
+ENTRYPOINT [ "java","-jar", "./build/libs/assessment-api-1.0.0.jar"]
