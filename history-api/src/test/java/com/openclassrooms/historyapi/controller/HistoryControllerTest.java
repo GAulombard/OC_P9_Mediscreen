@@ -1,6 +1,5 @@
 package com.openclassrooms.historyapi.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.historyapi.dto.NoteDTO;
 import com.openclassrooms.historyapi.exception.NoteAlreadyExistsException;
 import com.openclassrooms.historyapi.exception.NoteNotFoundException;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -41,9 +39,6 @@ public class HistoryControllerTest {
 
     @MockBean
     private HistoryServiceImp historyServiceImp;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private WebApplicationContext context;
