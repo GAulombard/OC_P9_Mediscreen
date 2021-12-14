@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,20 @@ public class PatientServiceImp implements PatientService {
 
         return patientRepository.findAll(Sort.by(Sort.Direction.ASC,"id"));
 
+    }
+
+    @Override
+    public List<PatientDTO> getAllByLastName(String lastName) {
+
+        List<Patient> patientList = patientRepository.findAllByLastName(lastName);
+        List<PatientDTO> patientDTOList = new ArrayList<>();
+
+        patientList.forEach(patient -> {
+            patientDTOList.add(dtoConverter.PatientToPatientDTO(patient));
+        });
+
+
+        return patientDTOList;
     }
 
     @Override

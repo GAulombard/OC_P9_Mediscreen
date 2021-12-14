@@ -52,6 +52,12 @@ public class AssessmentServiceImp implements AssessmentService{
         return new Assessment(patientDTO,riskLevel);
     }
 
+    @Override
+    public List<PatientDTO> getAllPatientByFamilyName(String familyName) {
+
+        return patientProxyFeign.getAllByLastName(familyName);
+    }
+
     private int getNumberTriggerNote(List<NoteDTO> notes) {
         log.info("** Process to get note trigger");
 

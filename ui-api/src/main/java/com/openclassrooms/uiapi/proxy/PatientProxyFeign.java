@@ -26,4 +26,7 @@ public interface PatientProxyFeign {
 
     @PostMapping({"/update/{id}"})
     void update(@PathVariable("id") Integer id, PatientDTO patientDTO);
+
+    @GetMapping("/list/{familyName}")
+    List<PatientDTO> getAllByLastName(@PathVariable("familyName") String familyName);
 }

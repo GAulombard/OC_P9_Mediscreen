@@ -1,6 +1,8 @@
 package com.openclassrooms.assessmentapi.proxy;
 
 import com.openclassrooms.assessmentapi.dto.PatientDTO;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,4 +28,7 @@ public interface PatientProxyFeign {
 
     @PostMapping({"/update/{id}"})
     void update(@PathVariable("id") Integer id, PatientDTO patientDTO);
+
+    @GetMapping("/list/{familyName}")
+    List<PatientDTO> getAllByLastName(@PathVariable("familyName") String familyName);
 }

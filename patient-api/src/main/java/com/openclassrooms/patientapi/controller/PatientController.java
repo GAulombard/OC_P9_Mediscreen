@@ -48,6 +48,19 @@ public class PatientController {
         return resultList;
     }
 
+    @GetMapping("/list/{familyName}")
+    @ApiOperation(value = "This URI returns a list of all patients with the same family name.")
+    public List<PatientDTO> getAllByLastName(@ApiParam(
+            value = "familyName",
+            example = "Arnold"
+    )@PathVariable("familyName") String familyName) {
+        log.info("HTTP GET request received at /patient/list/"+familyName);
+
+        List<PatientDTO> resultList = patientService.getAllByLastName(familyName);
+
+        return resultList;
+    }
+
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "This URI allows to delete a patient from the database")
     public void delete(

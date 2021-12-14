@@ -13,6 +13,8 @@ public interface PatientService {
 
     List<Patient> getAll();
 
+    List<PatientDTO> getAllByLastName(String lastName);
+
     void delete(Integer id) throws PatientNotFoundException;
 
     void save(PatientDTO patientDTO) throws PatientAlreadyExistsException;
