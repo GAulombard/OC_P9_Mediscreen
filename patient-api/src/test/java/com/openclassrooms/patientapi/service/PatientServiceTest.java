@@ -68,6 +68,16 @@ public class PatientServiceTest {
     @Test
     @Transactional
     @Rollback
+    public void test_getAllByLastName() throws PatientAlreadyExistsException {
+        patientServiceImp.save(patientDTO1);
+
+        assertEquals(1,patientServiceImp.getAllByLastName(patientDTO1.getLastName()).size());
+
+    }
+
+    @Test
+    @Transactional
+    @Rollback
     public void test_save() throws PatientAlreadyExistsException {
         patientServiceImp.save(patientDTO1);
         List<Patient> patientList = patientServiceImp.getAll();

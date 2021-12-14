@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface AssessmentProxyFeign {
     @GetMapping("/{id}")
     AssessmentDTO getPatientAssessment(@PathVariable("id") Integer patientId);
 
-    @GetMapping("/{familyName}")
-    List<AssessmentDTO> getFamilyAssessment(@PathVariable("familyName") String familyName);
+    @GetMapping("/familyName")
+    List<AssessmentDTO> getFamilyAssessment(@RequestParam(value="value") String familyName);
 
 }
