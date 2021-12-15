@@ -10,12 +10,12 @@ subprojects {
     task prepareKotlinBuildScriptModel {
 
     }
-}
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "GAulombard_OC_P9_Mediscreen"
-        property "sonar.organization", "gaulombard"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "GAulombard_OC_P9_Mediscreen"
+            property "sonar.organization", "gaulombard"
+            property "sonar.host.url", "https://sonarcloud.io"
+        }
+}
 }
