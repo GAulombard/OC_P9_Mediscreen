@@ -1,0 +1,165 @@
+SonarCloud plugins:
+  - IaC Code Quality and Security 1.4.0.1294 (iac)
+  - PL/SQL Code Quality and Security 3.6.1.3873 (plsql)
+  - Scala Code Quality and Security 1.8.3.2219 (sonarscala)
+  - C# Code Quality and Security 8.33.0.40503 (csharp)
+  - Vulnerability Analysis 9.2.0.14426 (security)
+  - Java Code Quality and Security 7.6.0.28201 (java)
+  - HTML Code Quality and Security 3.5.0.3009 (web)
+  - Flex Code Quality and Security 2.6.2.2641 (flex)
+  - XML Code Quality and Security 2.5.0.3376 (xml)
+  - VB.NET Code Quality and Security 8.33.0.40503 (vbnet)
+  - Swift Code Quality and Security 4.3.2.5043 (swift)
+  - CFamily Code Quality and Security 6.28.0.39490 (cpp)
+  - Python Code Quality and Security 3.8.0.8883 (python)
+  - Go Code Quality and Security 1.8.3.2219 (go)
+  - JaCoCo 1.1.1.1157 (jacoco)
+  - Kotlin Code Quality and Security 2.8.0.1093 (kotlin)
+  - Mercurial 1.1.2 (scmmercurial)
+  - T-SQL Code Quality and Security 1.5.1.4340 (tsql)
+  - Apex Code Quality and Security 1.8.3.2219 (sonarapex)
+  - JavaScript/TypeScript Code Quality and Security 8.7.0.17093 (javascript)
+  - Ruby Code Quality and Security 1.8.3.2219 (ruby)
+  - Vulnerability Rules for C# 9.2.0.14426 (securitycsharpfrontend)
+  - Vulnerability Rules for Java 9.2.0.14426 (securityjavafrontend)
+  - License for SonarLint 8.0.0.25523 (license)
+  - Vulnerability Rules for JS 9.2.0.14426 (securityjsfrontend)
+  - COBOL Code Quality 4.6.2.4876 (cobol)
+  - Vulnerability Rules for Python 9.2.0.14426 (securitypythonfrontend)
+  - PHP Code Quality and Security 3.22.0.8482 (php)
+  - ABAP Code Quality and Security 3.9.1.3127 (abap)
+  - Configuration detection fot Code Quality and Security 1.1.0.185 (config)
+  - Vulnerability Rules for PHP 9.2.0.14426 (securityphpfrontend)
+Global server settings:
+  - email.from=noreply@sonarcloud.io
+  - email.fromName=SonarCloud
+  - email.prefix=[SonarCloud]
+  - node_10_end_of_support_date=1620604800000
+  - node_10_grace_period_termination_date=1621814400000
+  - sonar.auth.bitbucket.enabled=true
+  - sonar.auth.microsoft.enabled=true
+  - sonar.core.id=1BD809FA-AWHW8ct9-T_TB3XqouNu
+  - sonar.core.serverBaseURL=https://sonarcloud.io
+  - sonar.core.startTime=2021-12-15T11:20:40+0100
+  - sonar.dbcleaner.weeksBeforeDeletingAllSnapshots=260
+  - sonar.dbcleaner.weeksBeforeKeepingOnlyOneSnapshotByMonth=4
+  - sonar.dbcleaner.weeksBeforeKeepingOnlyOneSnapshotByWeek=1
+  - sonar.global.exclusions=**/build-wrapper-dump.json
+  - sonar.lf.enableGravatar=true
+  - sonar.lf.logoWidthPx=105
+  - sonar.maintenance_mode.link=https://sonarcloud.statuspage.io/incidents/4y1k6q1wsy4v
+  - sonar.organizations.anyoneCanCreate=true
+  - sonar.organizations.createPersonalOrg=true
+  - sonar.plsql.file.suffixes=sql,tab,pkb
+  - sonar.tsql.file.suffixes=.tsql
+Project server settings:
+Project scanner properties:
+  - sonar.host.url=https://sonarcloud.io
+  - sonar.modules=:assessment-api,:history-api,:patient-api,:ui-api
+  - sonar.organization=gaulombard
+  - sonar.projectBaseDir=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen
+  - sonar.projectKey=GAulombard_OC_P9_Mediscreen
+  - sonar.projectName=mediscreen
+  - sonar.projectVersion=unspecified
+  - sonar.scanner.app=ScannerGradle
+  - sonar.scanner.appVersion=3.2-SNAPSHOT/Gradle 7.1
+  - sonar.sourceEncoding=windows-1252
+  - sonar.sources=
+  - sonar.verbose=true
+  - sonar.working.directory=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\build\sonar
+Scanner properties of module: GAulombard_OC_P9_Mediscreen:history-api
+  - sonar.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\classes\java\main
+  - sonar.coverage.jacoco.xmlReportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\reports\jacoco\test\jacocoTestReport.xml
+  - sonar.jacoco.reportPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\jacoco\test.exec
+  - sonar.jacoco.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\jacoco\test.exec
+  - sonar.java.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\classes\java\main
+  - sonar.java.jdkHome=C:\Program Files\OpenJDK\jdk-11.0.11.9-hotspot
+  - sonar.java.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-mongodb\2.6.1\175351d62a084dab0078e4d513855d74d6adecaa\spring-boot-starter-data-mongodb-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger-ui\2.9.2\d542382a88ff3ea8d4032c28b2b0325797fada7d\springfox-swagger-ui-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-json\2.5.6\6ef5a7087e18ed4f3736...
+  - sonar.java.source=11
+  - sonar.java.target=11
+  - sonar.java.test.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\classes\java\test
+  - sonar.java.test.libraries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\classes\java\main,D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\resources\main,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-mongodb\2.6.1\175351d62a084dab0078e4d513855d74d6adecaa\spring-boot-starter-data-mongodb-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger-ui\2.9.2\d542382a88ff3ea8d4032c28b2b0325797fada7d\springfox-swagger-ui-2.9.2.jar,C:\Users\Hodor-Fixe\...
+  - sonar.junit.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\test-results\test
+  - sonar.junit.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\test-results\test
+  - sonar.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-mongodb\2.6.1\175351d62a084dab0078e4d513855d74d6adecaa\spring-boot-starter-data-mongodb-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger-ui\2.9.2\d542382a88ff3ea8d4032c28b2b0325797fada7d\springfox-swagger-ui-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-json\2.5.6\6ef5a7087e18ed4f3736...
+  - sonar.moduleKey=GAulombard_OC_P9_Mediscreen:history-api
+  - sonar.projectBaseDir=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api
+  - sonar.projectKey=GAulombard_OC_P9_Mediscreen:history-api
+  - sonar.projectName=history-api
+  - sonar.projectVersion=1.0.0
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\src\main\java
+  - sonar.surefire.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\build\test-results\test
+  - sonar.tests=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\history-api\src\test\java
+Scanner properties of module: GAulombard_OC_P9_Mediscreen:assessment-api
+  - sonar.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\classes\java\main
+  - sonar.coverage.jacoco.xmlReportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\reports\jacoco\test\jacocoTestReport.xml
+  - sonar.jacoco.reportPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\jacoco\test.exec
+  - sonar.jacoco.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\jacoco\test.exec
+  - sonar.java.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\classes\java\main
+  - sonar.java.jdkHome=C:\Program Files\OpenJDK\jdk-11.0.11.9-hotspot
+  - sonar.java.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.apache.commons...
+  - sonar.java.source=11
+  - sonar.java.target=11
+  - sonar.java.test.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\classes\java\test
+  - sonar.java.test.libraries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\classes\java\main,D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\resources\main,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0...
+  - sonar.junit.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\test-results\test
+  - sonar.junit.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\test-results\test
+  - sonar.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.apache.commons...
+  - sonar.moduleKey=GAulombard_OC_P9_Mediscreen:assessment-api
+  - sonar.projectBaseDir=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api
+  - sonar.projectKey=GAulombard_OC_P9_Mediscreen:assessment-api
+  - sonar.projectName=assessment-api
+  - sonar.projectVersion=1.0.0
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\src\main\java
+  - sonar.surefire.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\build\test-results\test
+  - sonar.tests=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\assessment-api\src\test\java
+Scanner properties of module: GAulombard_OC_P9_Mediscreen:patient-api
+  - sonar.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\classes\java\main
+  - sonar.coverage.jacoco.xmlReportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\reports\jacoco\test\jacocoTestReport.xml
+  - sonar.jacoco.reportPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\jacoco\test.exec
+  - sonar.jacoco.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\jacoco\test.exec
+  - sonar.java.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\classes\java\main
+  - sonar.java.jdkHome=C:\Program Files\OpenJDK\jdk-11.0.11.9-hotspot
+  - sonar.java.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-jpa\2.6.1\cb2b309c7452b8835569bdd8df3c1352ca9bde0\spring-boot-starter-data-jpa-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger-ui\2.9.2\d542382a88ff3...
+  - sonar.java.source=11
+  - sonar.java.target=11
+  - sonar.java.test.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\classes\java\test
+  - sonar.java.test.libraries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\classes\java\main,D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\resources\main,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-jpa\2.6.1\cb2b309c7452b8835569bdd8df3c1352ca9bde0\spring-boot-starter-data-jpa-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.j...
+  - sonar.junit.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\test-results\test
+  - sonar.junit.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\test-results\test
+  - sonar.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-jpa\2.6.1\cb2b309c7452b8835569bdd8df3c1352ca9bde0\spring-boot-starter-data-jpa-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger2\2.9.2\362676bc7f4c6f9f1d568741becab0dfc198c898\springfox-swagger2-2.9.2.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\io.springfox\springfox-swagger-ui\2.9.2\d542382a88ff3...
+  - sonar.moduleKey=GAulombard_OC_P9_Mediscreen:patient-api
+  - sonar.projectBaseDir=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api
+  - sonar.projectKey=GAulombard_OC_P9_Mediscreen:patient-api
+  - sonar.projectName=patient-api
+  - sonar.projectVersion=1.0.0
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\src\main\java
+  - sonar.surefire.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\build\test-results\test
+  - sonar.tests=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\patient-api\src\test\java
+Scanner properties of module: GAulombard_OC_P9_Mediscreen:ui-api
+  - sonar.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\classes\java\main
+  - sonar.coverage.jacoco.xmlReportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\reports\jacoco\test\jacocoTestReport.xml
+  - sonar.jacoco.reportPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\jacoco\test.exec
+  - sonar.jacoco.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\jacoco\test.exec
+  - sonar.java.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\classes\java\main
+  - sonar.java.jdkHome=C:\Program Files\OpenJDK\jdk-11.0.11.9-hotspot
+  - sonar.java.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframewor...
+  - sonar.java.source=11
+  - sonar.java.target=11
+  - sonar.java.test.binaries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\classes\java\test
+  - sonar.java.test.libraries=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\classes\java\main,D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\resources\main,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring...
+  - sonar.junit.reportPaths=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\test-results\test
+  - sonar.junit.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\test-results\test
+  - sonar.libraries=C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.18.10\625fc0055674dff70dbc76efa36d0f2c89b04a24\lombok-1.18.10.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-actuator\2.6.1\f45c31d64bd2ed5887282497cb8626a1b299badb\spring-boot-starter-actuator-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-thymeleaf\2.6.1\7eb008866400aa6eeafd6ef73c92e975ba35811b\spring-boot-starter-thymeleaf-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-validation\2.6.1\ae3d7047936011a68d73b14cdc4200f3ca466118\spring-boot-starter-validation-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.6.1\145ac0cfb81982608ef0d19e32699c0eeeb3c2ab\spring-boot-starter-web-2.6.1.jar,C:\Users\Hodor-Fixe\.gradle\caches\modules-2\files-2.1\org.springframewor...
+  - sonar.moduleKey=GAulombard_OC_P9_Mediscreen:ui-api
+  - sonar.projectBaseDir=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api
+  - sonar.projectKey=GAulombard_OC_P9_Mediscreen:ui-api
+  - sonar.projectName=ui-api
+  - sonar.projectVersion=1.0.0
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\src\main\java
+  - sonar.surefire.reportsPath=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\build\test-results\test
+  - sonar.tests=D:\DevInformatique\_OpenClasseRoom_DeveloppeurApllicationJava\P9_aulombard_geoffrey\mediscreen\ui-api\src\test\java
