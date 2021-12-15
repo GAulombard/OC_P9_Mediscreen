@@ -1,3 +1,7 @@
+plugins {
+    id "org.sonarqube" version "3.3"
+}
+
 subprojects {
 
     dependencies {
@@ -5,5 +9,13 @@ subprojects {
     }
     task prepareKotlinBuildScriptModel {
 
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "GAulombard_OC_P9_Mediscreen"
+        property "sonar.organization", "gaulombard"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
