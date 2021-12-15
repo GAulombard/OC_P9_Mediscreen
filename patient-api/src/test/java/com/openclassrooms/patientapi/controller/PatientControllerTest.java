@@ -90,6 +90,17 @@ public class PatientControllerTest {
     }
 
     @Test
+    public void test_getAllByLastName() throws Exception {
+
+        when(patientServiceImp.getAllByLastName(anyString())).thenReturn(patientDTOList);
+
+        mockMvc.perform(get("/patient/list/anyString"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+    }
+
+    @Test
     public void test_getPatientById_shouldThrowsPatientNotFoundException() throws Exception {
 
         when(patientRepository.existsById(1)).thenReturn(false);
@@ -115,17 +126,6 @@ public class PatientControllerTest {
 
     }
 
-/*    @Test
-    public void test_delete_shouldThrowsPatientNotFoundException() throws Exception {
-
-        when(patientRepository.existsById(1)).thenReturn(false);
-
-        mockMvc.perform(get("/patient/delete/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-
-    }*/
-
     @Test
     public void test_validate() throws Exception {
 
@@ -139,20 +139,6 @@ public class PatientControllerTest {
 
     }
 
-/*    @Test
-    public void test_validate_shouldThrowsPatientAlreadyExistsException() throws Exception {
-
-        when(patientRepository.existsByLastNameAndFirstNameAndBirthDate(anyString(),anyString(),any())).thenReturn(true);
-
-        //when(patientServiceImp.save(patientDTO1)).thenThrow(PatientAlreadyExistsException.class);
-
-        mockMvc.perform(post("/patient/validate")
-                        .content(objectMapper.writeValueAsString(patientDTO1))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isConflict())
-                .andReturn();
-
-    }*/
 
     @Test
     public void test_update() throws Exception {
@@ -167,17 +153,6 @@ public class PatientControllerTest {
 
     }
 
-/*    @Test
-    public void test_update_shouldThrowsPatientNotFoundException() throws Exception {
-
-        when(patientRepository.existsById(anyInt())).thenReturn(false);
-
-        mockMvc.perform(post("/patient/update/1")
-                        .content(objectMapper.writeValueAsString(patientDTO1))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-
-    }*/
 
 
 }
