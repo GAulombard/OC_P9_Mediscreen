@@ -1,0 +1,17 @@
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestNone Practitioner's notes/recommendations: Patient states that they are 'feeling terrific' Weight at or below recommended level\",  \"patientId\": 1}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestBorderline Practitioner's notes/recommendations: Patient states that they are feeling a great deal of stress at work Patient also complains that their hearing seems Abnormal as of late\",  \"patientId\": 2}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestBorderline Practitioner's notes/recommendations: Patient states that they have had a Reaction to medication within last 3 months Patient also complains that their hearing continues to be problematic\",  \"patientId\": 2}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestInDanger Practitioner's notes/recommendations: Patient states that they are short term Smoker\",  \"patientId\": 3}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestInDanger Practitioner's notes/recommendations: Patient states that they quit within last year Patient also complains that of Abnormal breathing spells Lab reports Cholesterol LDL high\",  \"patientId\": 3}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that walking up stairs has become difficult Patient also complains that they are having shortness of breath Lab results indicate Antibodies present elevated Reaction to medication\",  \"patientId\": 4}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that they are experiencing back pain when seated for a long time\",  \"patientId\": 4}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that they are a short term Smoker Hemoglobin A1C above recommended level\",  \"patientId\": 4}"
+
+curl -X POST "http://localhost:8082/history/validate" -H  "Content-Type: application/json" -d "{  \"note\": \"Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that Body Height, Body Weight, Cholesterol, Dizziness and Reaction\",  \"patientId\": 4}"

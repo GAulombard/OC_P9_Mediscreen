@@ -6,6 +6,7 @@ import com.openclassrooms.uiapi.dto.PatientDTO;
 import com.openclassrooms.uiapi.proxy.AssessmentProxyFeign;
 import com.openclassrooms.uiapi.proxy.HistoryProxyFeign;
 import com.openclassrooms.uiapi.proxy.PatientProxyFeign;
+import feign.FeignException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
