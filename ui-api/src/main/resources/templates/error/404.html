@@ -25,30 +25,10 @@
         <div class="col-12 col-lg-12">
             <div class="card my-3 shadow">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h2 class="card-title">Family diabetes report</h2>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
-                        </div>
-                    </div>
-                    <table class="table table-hover">
-                        <thead class="thead-light">
-                        <tr>
-                            <th class="text-left">Members</th>
-                            <th class="text-left"></th>
-                        </tr>
+                    <h2 class="card-title">404 - ERROR</h2><br>
+                    <h4 class="card-title">Page not found</h4><br>
 
-                        </thead>
-                        <tbody>
-                        <tr th:each="assessment: ${assessmentList}">
-                            <td th:text="${assessment.toString}" style="cursor: pointer"
-                                th:onclick="'javascript:rowClicked(\''+${assessment.patientDTO.id}+'\');'"></td>
-                            <td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <button type="button" class="btn btn-info" onclick="javascript:history.back()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -58,12 +38,6 @@
 <!-- FOOTER -->
 <div th:replace="fragments/foot"></div>
 
-
-<script>
-    function rowClicked(value) {
-        location.href = "/patient/profile/" + value;
-    }
-</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

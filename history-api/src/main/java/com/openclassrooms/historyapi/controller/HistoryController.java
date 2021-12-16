@@ -36,7 +36,7 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns a note by id")
     public NoteDTO getNoteById(@ApiParam(
             value = "id",
-            example = "61b1daec21efc6385fca1920"
+            example = "61b67a48b17a820c8e8c11c2"
     ) @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/" + id);
 
@@ -130,7 +130,7 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns the patient id given a note id")
     public Integer getPatientId(@ApiParam(
             value = "id",
-            example = "61b1daec21efc6385fca1920"
+            example = "61b67a48b17a820c8e8c11c2"
     )
                        @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/patient/" + id);
