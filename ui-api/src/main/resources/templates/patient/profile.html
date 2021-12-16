@@ -45,7 +45,8 @@
                                 <th:block th:text="${patientDTO.id}"></th:block>
                             </div>
                             <div>Birth-date:
-                                <th:block th:text="${patientDTO.birthDate}"></th:block>
+                                <th:block
+                                        th:text="${patientDTO.birthDate}+' (age '+${assessmentDTO.age}+')'"></th:block>
                             </div>
                             <div>Gender:
                                 <th:block th:text="${patientDTO.sex}"></th:block>
@@ -58,8 +59,22 @@
                             </div>
                             </p>
                         </div>
-                        <div>Diabetes assessment is:
-                            <th:block th:text="${assessmentDTO.diabetesRiskLevel}" style="text-align:center"></th:block>
+                        <div>
+                            <div class="d-flex flex-column">
+                                <div>
+                                    Diabetes assessment is:
+                                    <th:block th:text="${assessmentDTO.diabetesRiskLevel}"
+                                              style="text-align:center"></th:block><br>
+                                </div>
+                                <div><br>
+                                    <a th:href="'/assessment/'+${patientDTO.id}"
+                                       class="btn btn-info btn-sm">See report
+                                    </a>
+                                    <a th:href="'/assessment/familyName?value='+${patientDTO.lastName}"
+                                       class="btn btn-info btn-sm">See family report
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,6 @@ public class DTOConverter {
      */
     public AssessmentDTO AssessmentToAssessmentDTO(Assessment assessment) {
 
-        return new AssessmentDTO(assessment.getPatientDTO(),assessment.getDiabetesRiskLevel());
+        return new AssessmentDTO(assessment.getPatientDTO(),assessment.getAge(),assessment.getDiabetesRiskLevel());
     }
 }

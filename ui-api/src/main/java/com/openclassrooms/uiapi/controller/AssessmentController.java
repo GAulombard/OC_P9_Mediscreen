@@ -51,7 +51,9 @@ public class AssessmentController {
             return "error/error";
         }
 
-        return "redirect:/patient/profile/"+patientId;
+        model.addAttribute("assessment",assessmentDTO.toString());
+
+        return "assessment/individual";
     }
 
     /**
@@ -78,8 +80,10 @@ public class AssessmentController {
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
-        //todo: change the url
-        return "redirect:/patient/list/";
+
+        model.addAttribute("assessmentList",assessmentDTOList);
+
+        return "assessment/family";
     }
 
 }

@@ -52,7 +52,7 @@ public class AssessmentServiceImp implements AssessmentService{
         int numberTrigger = getNumberTriggerNote(noteDTOList);
         String riskLevel = getRiskLevel(numberTrigger,age,patientDTO.getSex());
 
-        return new Assessment(patientDTO,riskLevel);
+        return new Assessment(patientDTO,age,riskLevel);
     }
 
     @Override

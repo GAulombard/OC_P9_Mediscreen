@@ -53,7 +53,6 @@ public class PatientController {
             model.addAttribute("patients", patientProxyFeign.getAll());
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -100,7 +99,6 @@ public class PatientController {
             log.info("New patient saved: "+patientDTO.getFirstName()+" "+patientDTO.getLastName());
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -128,7 +126,6 @@ public class PatientController {
             patientDTO = patientProxyFeign.getPatientById(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -164,7 +161,6 @@ public class PatientController {
                 patientProxyFeign.update(id, patientDTO);
             } catch (Exception e) {
                 log.error("" + e.getMessage());
-                //model.addAttribute("errorStatus",e.getMessage());
                 model.addAttribute("errorMsg", e.toString());
                 return "error/error";
             }
@@ -191,7 +187,6 @@ public class PatientController {
             patientProxyFeign.delete(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -224,7 +219,6 @@ public class PatientController {
             assessmentDTO = assessmentProxyFeign.getPatientAssessment(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }

@@ -29,7 +29,7 @@ class DTOConverterTest {
     @Test
     void test_AssessmentToAssessmentDTO() {
 
-        Assessment assessment = new Assessment(new PatientDTO("Test","test", LocalDate.now(),"M"),"None");
+        Assessment assessment = new Assessment(new PatientDTO("Test","test", LocalDate.now(),"M"),25,"None");
 
         AssessmentDTO assessmentDTO = dtoConverter.AssessmentToAssessmentDTO(assessment);
 

@@ -16,7 +16,11 @@ import lombok.Setter;
 public class Assessment {
 
     private PatientDTO patientDTO;
-
+    private int age;
     private String diabetesRiskLevel;
 
+    @Override
+    public String toString() {
+        return "Patient: "+patientDTO.getLastName()+" "+patientDTO.getFirstName()+" (age "+age+") diabetes assessment is: "+diabetesRiskLevel;
+    }
 }
