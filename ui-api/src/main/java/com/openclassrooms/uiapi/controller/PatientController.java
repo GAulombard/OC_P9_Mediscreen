@@ -19,6 +19,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Patient controller.
+ */
 @Controller
 @Slf4j
 @RequestMapping({"/patient"})
@@ -33,6 +36,12 @@ public class PatientController {
     @Autowired
     private AssessmentProxyFeign assessmentProxyFeign;
 
+    /**
+     * Gets list.
+     *
+     * @param model the model
+     * @return the list
+     */
     @ApiOperation(value = "This URI returns the list of all patients")
     @GetMapping({"/list"})
     public String getList(final Model model) {
@@ -52,6 +61,12 @@ public class PatientController {
         return "patient/list";
     }
 
+    /**
+     * Gets add form.
+     *
+     * @param model the model
+     * @return the add form
+     */
     @ApiOperation(value = "This URI returns the form page to add a new patient")
     @GetMapping({"/add"})
     public String getAddForm(final Model model) {
@@ -62,6 +77,14 @@ public class PatientController {
         return "patient/add";
     }
 
+    /**
+     * Validate add form string.
+     *
+     * @param patientDTO    the patient dto
+     * @param bindingResult the binding result
+     * @param model         the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI validate the form to add a new patient to the database")
     @PostMapping({"/validate"})
     public String validateAddForm(@Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, Model model) {
@@ -85,6 +108,13 @@ public class PatientController {
         return "redirect:list";
     }
 
+    /**
+     * Gets update form.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the update form
+     */
     @ApiOperation(value = "This URI returns the form page to update patient's information")
     @GetMapping({"/update/{id}"})
     public String getUpdateForm(@ApiParam(
@@ -109,6 +139,15 @@ public class PatientController {
         return "patient/update";
     }
 
+    /**
+     * Update string.
+     *
+     * @param id            the id
+     * @param patientDTO    the patient dto
+     * @param bindingResult the binding result
+     * @param model         the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI update patient's information")
     @PostMapping({"/update/{id}"})
     public String update(@ApiParam(
@@ -133,6 +172,13 @@ public class PatientController {
         }
     }
 
+    /**
+     * Delete string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI allow to delete a patient")
     @GetMapping({"/delete/{id}"})
     public String delete(@ApiParam(
@@ -153,6 +199,13 @@ public class PatientController {
         return "redirect:/patient/list";
     }
 
+    /**
+     * Profile string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI returns the patient's profile page")
     @GetMapping({"/profile/{id}"})
     public String profile(@ApiParam(

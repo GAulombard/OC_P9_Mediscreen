@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+/**
+ * The type Assessment service imp.
+ */
 @Service
 @Slf4j
 public class AssessmentServiceImp implements AssessmentService{

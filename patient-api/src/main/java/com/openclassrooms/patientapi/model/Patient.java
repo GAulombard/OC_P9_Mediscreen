@@ -5,6 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * The type Patient.
+ */
 @Entity
 @Table(name = "patients")
 @Getter
@@ -35,6 +38,14 @@ public class Patient {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    /**
+     * Instantiates a new Patient.
+     *
+     * @param lastName  the last name
+     * @param firstName the first name
+     * @param birthDate the birth date
+     * @param sex       the sex
+     */
     public Patient(String lastName, String firstName, LocalDate birthDate, String sex) {
         this.lastName = lastName;
         this.firstName = firstName;

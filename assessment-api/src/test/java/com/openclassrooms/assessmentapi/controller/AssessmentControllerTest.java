@@ -26,10 +26,13 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Assessment controller test.
+ */
 @Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AssessmentControllerTest {
+class AssessmentControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,18 +43,29 @@ public class AssessmentControllerTest {
     @MockBean
     private DTOConverter dtoConverter;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     static void setUp() {
         log.info("@BeforeAll");
     }
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
     }
 
+    /**
+     * Test get patient assessment.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getPatientAssessment() throws Exception {
+    void test_getPatientAssessment() throws Exception {
 
         Assessment assessment3 = new Assessment(new PatientDTO(),"None");
         AssessmentDTO assessmentDTO3 = new AssessmentDTO(new PatientDTO(),"None");
@@ -68,8 +82,13 @@ public class AssessmentControllerTest {
     }
 
 
+    /**
+     * Test get family assessment list.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getFamilyAssessmentList() throws Exception {
+    void test_getFamilyAssessmentList() throws Exception {
 
         PatientDTO patientDTO = new PatientDTO(1,"ferguson","Lucas", LocalDate.now(),"M","address","0123456789");
         PatientDTO patientDTO2 = new PatientDTO(2,"ferguson","Dude", LocalDate.now(),"M","address","0123456789");

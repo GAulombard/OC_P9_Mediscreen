@@ -8,10 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+ * The type Ui api controller.
+ */
 @Controller
 @Slf4j
 public class UiApiController {
 
+    /**
+     * Index string.
+     *
+     * @return the string
+     */
     @ApiOperation(value = "This URI returns the index page")
     @GetMapping(value={"","/","/index"})
     public String index() {

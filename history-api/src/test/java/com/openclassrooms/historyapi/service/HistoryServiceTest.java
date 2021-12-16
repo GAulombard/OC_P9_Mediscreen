@@ -26,9 +26,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+/**
+ * The type History service test.
+ */
 @SpringBootTest
 @Slf4j
-public class HistoryServiceTest {
+class HistoryServiceTest {
 
     @Autowired
     private HistoryRepository historyRepository;
@@ -46,6 +49,9 @@ public class HistoryServiceTest {
     private static Note note2;
     private static List<Note> noteList;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     static void setUp() {
         log.info("@BeforeAll");
@@ -57,8 +63,14 @@ public class HistoryServiceTest {
         noteList = Arrays.asList(note1,note2);
     }
 
+    /**
+     * Test read by id.
+     *
+     * @throws NoteNotFoundException      the note not found exception
+     * @throws NoteAlreadyExistsException the note already exists exception
+     */
     @Test
-    public void test_readById() throws NoteNotFoundException, NoteAlreadyExistsException {
+    void test_readById() throws NoteNotFoundException, NoteAlreadyExistsException {
 
         historyService.create(noteDTO1);
 
@@ -71,15 +83,24 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test read by id should throws note not found exception.
+     */
     @Test
-    public void test_readById_shouldThrowsNoteNotFoundException() {
+    void test_readById_shouldThrowsNoteNotFoundException() {
 
         assertThrows(NoteNotFoundException.class, () -> historyService.readById("1"));
 
     }
 
+    /**
+     * Test create.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws NoteNotFoundException      the note not found exception
+     */
     @Test
-    public void test_create() throws NoteAlreadyExistsException, NoteNotFoundException {
+    void test_create() throws NoteAlreadyExistsException, NoteNotFoundException {
 
         historyService.create(noteDTO1);
         historyService.create(noteDTO2);
@@ -91,8 +112,14 @@ public class HistoryServiceTest {
         historyService.deleteById("2");
     }
 
+    /**
+     * Test create should throws note already exists exception.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws NoteNotFoundException      the note not found exception
+     */
     @Test
-    public void test_create_shouldThrowsNoteAlreadyExistsException() throws NoteAlreadyExistsException, NoteNotFoundException {
+    void test_create_shouldThrowsNoteAlreadyExistsException() throws NoteAlreadyExistsException, NoteNotFoundException {
 
         historyService.create(noteDTO1);
 
@@ -103,8 +130,14 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test update.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws NoteNotFoundException      the note not found exception
+     */
     @Test
-    public void test_update() throws NoteAlreadyExistsException, NoteNotFoundException {
+    void test_update() throws NoteAlreadyExistsException, NoteNotFoundException {
 
         historyService.create(noteDTO1);
         noteDTO1.setNote("note updated");
@@ -117,15 +150,24 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test update should throws note not found exception.
+     */
     @Test
-    public void test_update_shouldThrowsNoteNotFoundException() {
+    void test_update_shouldThrowsNoteNotFoundException() {
 
         assertThrows(NoteNotFoundException.class, () -> historyService.update("1",noteDTO1));
 
     }
 
+    /**
+     * Test delete by id.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws NoteNotFoundException      the note not found exception
+     */
     @Test
-    public void test_deleteById() throws NoteAlreadyExistsException, NoteNotFoundException {
+    void test_deleteById() throws NoteAlreadyExistsException, NoteNotFoundException {
 
         historyService.create(noteDTO1);
 
@@ -137,15 +179,24 @@ public class HistoryServiceTest {
         assertEquals(0, historyRepository.findAll().size());
     }
 
+    /**
+     * Test delete should throws note not found exception.
+     */
     @Test
-    public void test_delete_shouldThrowsNoteNotFoundException() {
+    void test_delete_shouldThrowsNoteNotFoundException() {
 
         assertThrows(NoteNotFoundException.class, () -> historyService.deleteById("1"));
 
     }
 
+    /**
+     * Test read all by patient id.
+     *
+     * @throws NoteNotFoundException      the note not found exception
+     * @throws NoteAlreadyExistsException the note already exists exception
+     */
     @Test
-    public void test_readAllByPatientId() throws NoteNotFoundException, NoteAlreadyExistsException {
+    void test_readAllByPatientId() throws NoteNotFoundException, NoteAlreadyExistsException {
 
         historyService.create(noteDTO1);
         NoteDTO noteDTO3 = new NoteDTO("3",1, LocalDate.now().minusDays(1),"note3");
@@ -161,8 +212,14 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test find patient id by note id.
+     *
+     * @throws NoteNotFoundException      the note not found exception
+     * @throws NoteAlreadyExistsException the note already exists exception
+     */
     @Test
-    public void test_findPatientIdByNoteId() throws NoteNotFoundException, NoteAlreadyExistsException {
+    void test_findPatientIdByNoteId() throws NoteNotFoundException, NoteAlreadyExistsException {
 
         historyService.create(noteDTO1);
 
@@ -175,15 +232,24 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test find patient id by note id should throws note not found exception.
+     */
     @Test
-    public void test_findPatientIdByNoteId_shouldThrowsNoteNotFoundException() {
+    void test_findPatientIdByNoteId_shouldThrowsNoteNotFoundException() {
 
         assertThrows(NoteNotFoundException.class, () -> historyService.findPatientIdByNoteId("1"));
 
     }
 
+    /**
+     * Test count notes per patient.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws NoteNotFoundException      the note not found exception
+     */
     @Test
-    public void test_countNotesPerPatient() throws NoteAlreadyExistsException, NoteNotFoundException {
+    void test_countNotesPerPatient() throws NoteAlreadyExistsException, NoteNotFoundException {
         historyService.create(noteDTO1);
         NoteDTO noteDTO3 = new NoteDTO("3",1, LocalDate.now().minusDays(1),"note3");
         historyService.create(noteDTO3);

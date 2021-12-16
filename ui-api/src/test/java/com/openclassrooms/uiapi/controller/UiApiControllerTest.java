@@ -19,6 +19,9 @@ import java.util.Arrays;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Ui api controller test.
+ */
 @Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,11 +36,19 @@ public class UiApiControllerTest {
     @MockBean
     private PatientProxyFeign patientProxyFeign;
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
     }
 
+    /**
+     * Index.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void index() throws Exception {
         mockMvc.perform(get("/"))
@@ -45,6 +56,11 @@ public class UiApiControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Index bis.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void indexBis() throws Exception {
         mockMvc.perform(get("/index"))

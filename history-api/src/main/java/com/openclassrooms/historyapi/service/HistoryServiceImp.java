@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The type History service imp.
+ */
 @Service
 @Slf4j
 public class HistoryServiceImp implements HistoryService{

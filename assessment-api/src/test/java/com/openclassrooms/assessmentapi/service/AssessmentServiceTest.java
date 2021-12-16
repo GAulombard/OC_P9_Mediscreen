@@ -23,6 +23,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Assessment service test.
+ */
 @SpringBootTest
 @Slf4j
 class AssessmentServiceTest {
@@ -39,6 +42,11 @@ class AssessmentServiceTest {
     @InjectMocks
     private AssessmentServiceImp assessmentService;
 
+    /**
+     * Test get patient assessment by id.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void test_getPatientAssessmentById() throws Exception {
         PatientDTO patientDTO = new PatientDTO(1,"Test","test", LocalDate.now(),"M","address","0123456789");
@@ -52,6 +60,9 @@ class AssessmentServiceTest {
         assertEquals("None",assessmentService.getPatientAssessmentById(1).getDiabetesRiskLevel());
     }
 
+    /**
+     * Test get patient assessment by id should throw exception.
+     */
     @Test
     void test_getPatientAssessmentById_shouldThrowException() {
 
@@ -61,6 +72,9 @@ class AssessmentServiceTest {
 
     }
 
+    /**
+     * Test get all patient by family name.
+     */
     @Test
     void test_getAllPatientByFamilyName(){
         PatientDTO patientDTO = new PatientDTO(1,"Test","test", LocalDate.now(),"M","address","0123456789");
@@ -72,6 +86,11 @@ class AssessmentServiceTest {
 
     }
 
+    /**
+     * Test get patient assessment by id with height trigger.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void test_getPatientAssessmentById_withHeightTrigger() throws Exception {
         PatientDTO patientDTO = new PatientDTO(1,"Test","test", LocalDate.now(),"M","address","0123456789");
@@ -93,6 +112,11 @@ class AssessmentServiceTest {
         assertEquals("Early onset",assessmentService.getPatientAssessmentById(1).getDiabetesRiskLevel());
     }
 
+    /**
+     * Test get patient assessment by id with three trigger.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void test_getPatientAssessmentById_withThreeTrigger() throws Exception {
         PatientDTO patientDTO = new PatientDTO(1,"Test","test", LocalDate.now(),"M","address","0123456789");
@@ -109,6 +133,11 @@ class AssessmentServiceTest {
         assertEquals("In danger",assessmentService.getPatientAssessmentById(1).getDiabetesRiskLevel());
     }
 
+    /**
+     * Test get patient assessment by id with two trigger and more than thirty years old.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void test_getPatientAssessmentById_withTwoTriggerAndMoreThanThirtyYearsOld() throws Exception {
         PatientDTO patientDTO = new PatientDTO(1,"Test","test", LocalDate.now(),"M","address","0123456789");

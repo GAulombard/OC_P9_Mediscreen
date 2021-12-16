@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * The type Age calculator test.
+ */
 @Slf4j
 @SpringBootTest
 class AgeCalculatorTest {
@@ -17,6 +20,9 @@ class AgeCalculatorTest {
     @Autowired
     private AgeCalculator ageCalculator;
 
+    /**
+     * Test get age from birth date.
+     */
     @Test
     void test_getAgeFromBirthDate() {
 
@@ -26,6 +32,9 @@ class AgeCalculatorTest {
 
     }
 
+    /**
+     * Test get age from birth date should throws exception.
+     */
     @Test
     void test_getAgeFromBirthDate_shouldThrowsException() {
 

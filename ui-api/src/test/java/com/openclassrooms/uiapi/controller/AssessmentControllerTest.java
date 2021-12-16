@@ -25,10 +25,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+/**
+ * The type Assessment controller test.
+ */
 @Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AssessmentControllerTest {
+class AssessmentControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -36,13 +39,21 @@ public class AssessmentControllerTest {
     @MockBean
     private AssessmentProxyFeign assessmentProxyFeign;
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
     }
 
+    /**
+     * Test get patient assessment.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getPatientAssessment() throws Exception {
+    void test_getPatientAssessment() throws Exception {
 
         AssessmentDTO assessmentDTO = new AssessmentDTO();
 
@@ -53,8 +64,13 @@ public class AssessmentControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get patient assessment should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getPatientAssessment_shouldThrowsException() throws Exception {
+    void test_getPatientAssessment_shouldThrowsException() throws Exception {
 
         when(assessmentProxyFeign.getPatientAssessment(1)).thenThrow(new RuntimeException());
 
@@ -64,8 +80,13 @@ public class AssessmentControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get family assessment.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getFamilyAssessment() throws Exception {
+    void test_getFamilyAssessment() throws Exception {
 
         List<AssessmentDTO> assessmentDTOList = new ArrayList<>();
 
@@ -76,8 +97,13 @@ public class AssessmentControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get family assessment should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getFamilyAssessment_shouldThrowsException() throws Exception {
+    void test_getFamilyAssessment_shouldThrowsException() throws Exception {
 
         when(assessmentProxyFeign.getFamilyAssessment("anyString")).thenThrow(new RuntimeException());
 

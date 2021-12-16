@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type History controller.
+ */
 @RestController
 @Slf4j
 @RequestMapping("/history")
@@ -22,6 +25,13 @@ public class HistoryController {
     @Autowired
     private HistoryService historyService;
 
+    /**
+     * Gets note by id.
+     *
+     * @param id the id
+     * @return the note by id
+     * @throws NoteNotFoundException the note not found exception
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns a note by id")
     public NoteDTO getNoteById(@ApiParam(
@@ -35,6 +45,12 @@ public class HistoryController {
         return noteDTO;
     }
 
+    /**
+     * Gets all.
+     *
+     * @param id the id
+     * @return the all
+     */
     @GetMapping("/list/{id}")
     @ApiOperation(value = "This URI returns a list of all patient's notes saved in database given the patient's id.")
     public List<NoteDTO> getAll(@ApiParam(
@@ -48,6 +64,12 @@ public class HistoryController {
         return resultList;
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     * @throws NoteNotFoundException the note not found exception
+     */
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "This URI allows to delete a note from the database")
     public void delete(@ApiParam(
@@ -61,6 +83,12 @@ public class HistoryController {
 
     }
 
+    /**
+     * Validate.
+     *
+     * @param noteDTO the note dto
+     * @throws NoteAlreadyExistsException the note already exists exception
+     */
     @PostMapping("/validate")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the note's form to save a new note in the database.")
@@ -71,6 +99,13 @@ public class HistoryController {
 
     }
 
+    /**
+     * Update.
+     *
+     * @param id      the id
+     * @param noteDTO the note dto
+     * @throws NoteNotFoundException the note not found exception
+     */
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the note's form to update a patient's note in the database.")
@@ -84,6 +119,13 @@ public class HistoryController {
 
     }
 
+    /**
+     * Gets patient id.
+     *
+     * @param id the id
+     * @return the patient id
+     * @throws NoteNotFoundException the note not found exception
+     */
     @GetMapping("/patient/{id}")
     @ApiOperation(value = "This URI returns the patient id given a note id")
     public Integer getPatientId(@ApiParam(
@@ -97,6 +139,11 @@ public class HistoryController {
 
     }
 
+    /**
+     * Gets count note per patient.
+     *
+     * @return the count note per patient
+     */
     @GetMapping("/count")
     @ApiOperation(value = "This URI returns the number of notes by patient id.")
     public Map<Integer,Integer> getCountNotePerPatient() {

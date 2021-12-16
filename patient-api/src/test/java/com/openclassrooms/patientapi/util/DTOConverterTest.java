@@ -16,9 +16,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Dto converter test.
+ */
 @SpringBootTest
 @Slf4j
-public class DTOConverterTest {
+class DTOConverterTest {
 
     @Autowired
     private JpaRepository patientRepository;
@@ -36,6 +39,9 @@ public class DTOConverterTest {
     private static List<Patient> patientList;
     private static List<PatientDTO> patientDTOList;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     public static void setUp() {
         log.info("@BeforeAll");
@@ -47,16 +53,22 @@ public class DTOConverterTest {
         patientList = Arrays.asList(patient1,patient2);
     }
 
+    /**
+     * Test patient to patient dto.
+     */
     @Test
-    public void test_PatientToPatientDTO() {
+    void test_PatientToPatientDTO() {
         PatientDTO patientDTO = dtoConverter.PatientToPatientDTO(patient1);
 
         assertEquals("Test3",patientDTO.getLastName());
         assertEquals("test3",patientDTO.getFirstName());
     }
 
+    /**
+     * Test patient dto to patient.
+     */
     @Test
-    public void test_PatientDTOToPatient() {
+    void test_PatientDTOToPatient() {
         Patient patient = dtoConverter.PatientDTOToPatient(patientDTO1);
 
         assertEquals("Test1",patient.getLastName());

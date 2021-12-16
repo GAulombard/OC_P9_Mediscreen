@@ -7,6 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 
+/**
+ * The type Note.
+ */
 @Setter(AccessLevel.PUBLIC)
 @Getter(AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -24,6 +27,13 @@ public class Note {
 
     private String note;
 
+    /**
+     * Instantiates a new Note.
+     *
+     * @param patientId the patient id
+     * @param date      the date
+     * @param note      the note
+     */
     public Note(Integer patientId, LocalDate date, String note) {
         this.patientId = patientId;
         this.date = date;

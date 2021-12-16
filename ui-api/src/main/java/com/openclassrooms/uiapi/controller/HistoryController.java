@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
+/**
+ * The type History controller.
+ */
 @Controller
 @Slf4j
 @RequestMapping("/history")
@@ -28,6 +31,13 @@ public class HistoryController {
     @Autowired
     private PatientProxyFeign patientProxyFeign;
 
+    /**
+     * Gets list.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the list
+     */
     @ApiOperation(value = "This URI returns the history list of a patient")
     @GetMapping({"/list/{id}"})
     public String getList(@PathVariable("id") Integer id, Model model) {
@@ -37,7 +47,6 @@ public class HistoryController {
             model.addAttribute("historyList", historyProxyFeign.getAll(id));
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -45,6 +54,13 @@ public class HistoryController {
         return "history/list";
     }
 
+    /**
+     * Gets add form.
+     *
+     * @param patientId the patient id
+     * @param model     the model
+     * @return the add form
+     */
     @ApiOperation(value = "This URI returns the form page to add a new patient's history")
     @GetMapping({"/add/{id}"})
     public String getAddForm(@PathVariable("id") Integer patientId, Model model) {
@@ -54,7 +70,6 @@ public class HistoryController {
             PatientDTO patientDTO = patientProxyFeign.getPatientById(patientId);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -67,6 +82,14 @@ public class HistoryController {
         return "history/add";
     }
 
+    /**
+     * Validate add form string.
+     *
+     * @param noteDTO       the note dto
+     * @param bindingResult the binding result
+     * @param model         the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI validate the form to add a new patient history to the database")
     @PostMapping({"/validate"})
     public String validateAddForm(@ModelAttribute("noteDTO") NoteDTO noteDTO, BindingResult bindingResult, Model model) {
@@ -76,7 +99,6 @@ public class HistoryController {
             historyProxyFeign.validate(noteDTO);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -84,6 +106,13 @@ public class HistoryController {
         return "redirect:/patient/profile/" + noteDTO.getPatientId();
     }
 
+    /**
+     * Gets update form.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the update form
+     */
     @ApiOperation(value = "This URI returns the form page to update patient's note")
     @GetMapping({"/update/{id}"})
     public String getUpdateForm(@ApiParam(
@@ -98,7 +127,6 @@ public class HistoryController {
             noteDTO = historyProxyFeign.getNoteById(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -109,6 +137,15 @@ public class HistoryController {
         return "history/update";
     }
 
+    /**
+     * Update string.
+     *
+     * @param id            the id
+     * @param noteDTO       the note dto
+     * @param bindingResult the binding result
+     * @param model         the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI update patient's note history")
     @PostMapping({"/update/{id}"})
     public String update(@ApiParam(
@@ -121,7 +158,6 @@ public class HistoryController {
             historyProxyFeign.update(id, noteDTO);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }
@@ -129,6 +165,13 @@ public class HistoryController {
         return "redirect:/patient/profile/" + noteDTO.getPatientId();
     }
 
+    /**
+     * Delete string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @ApiOperation(value = "This URI allows to delete a note from the patient's history")
     @GetMapping({"/delete/{id}"})
     public String delete(@ApiParam(
@@ -144,7 +187,6 @@ public class HistoryController {
             historyProxyFeign.delete(id);
         } catch (Exception e) {
             log.error("" + e.getMessage());
-            //model.addAttribute("errorStatus",e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
         }

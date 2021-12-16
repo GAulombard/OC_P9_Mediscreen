@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Assessment controller.
+ */
 @RestController
 @RequestMapping("/assessment")
 @Slf4j
@@ -26,6 +29,13 @@ public class AssessmentController {
     @Autowired
     private DTOConverter dtoConverter;
 
+    /**
+     * Gets patient assessment.
+     *
+     * @param patientId the patient id
+     * @return the patient assessment
+     * @throws Exception the exception
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns the assessment given a patient id")
     public AssessmentDTO getPatientAssessment(@ApiParam(
@@ -39,6 +49,12 @@ public class AssessmentController {
         return dtoConverter.AssessmentToAssessmentDTO(assessment);
     }
 
+    /**
+     * Gets family assessment list.
+     *
+     * @param familyName the family name
+     * @return the family assessment list
+     */
     @GetMapping("/familyName")
     @ApiOperation(value = "This URI returns a list of assessment given a family name")
     public List<AssessmentDTO> getFamilyAssessmentList(@ApiParam(

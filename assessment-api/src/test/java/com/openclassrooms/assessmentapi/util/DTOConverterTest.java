@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Dto converter test.
+ */
 @Slf4j
 @SpringBootTest
 class DTOConverterTest {
@@ -20,6 +23,9 @@ class DTOConverterTest {
     @Autowired
     private DTOConverter dtoConverter;
 
+    /**
+     * Test assessment to assessment dto.
+     */
     @Test
     void test_AssessmentToAssessmentDTO() {
 

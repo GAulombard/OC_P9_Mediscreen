@@ -22,10 +22,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+/**
+ * The type History controller test.
+ */
 @Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HistoryControllerTest {
+class HistoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -41,6 +44,9 @@ public class HistoryControllerTest {
     private static PatientDTO patientDTO1;
     private static List<NoteDTO> noteDTOList;
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
@@ -51,8 +57,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get list.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getList() throws Exception {
+    void test_getList() throws Exception {
 
         when(historyProxyFeign.getAll(1)).thenReturn(noteDTOList);
 
@@ -62,8 +73,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get list should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getList_shouldThrowsException() throws Exception {
+    void test_getList_shouldThrowsException() throws Exception {
 
         when(historyProxyFeign.getAll(1)).thenThrow(new RuntimeException());
 
@@ -73,8 +89,13 @@ public class HistoryControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get add form.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getAddForm() throws Exception {
+    void test_getAddForm() throws Exception {
 
         when(patientProxyFeign.getPatientById(1)).thenReturn(patientDTO1);
 
@@ -84,8 +105,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get add form should throw exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getAddForm_shouldThrowException() throws Exception {
+    void test_getAddForm_shouldThrowException() throws Exception {
 
         when(patientProxyFeign.getPatientById(1)).thenThrow(new RuntimeException());
 
@@ -96,8 +122,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test validate add form.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_validateAddForm() throws Exception {
+    void test_validateAddForm() throws Exception {
 
         doNothing().when(historyProxyFeign).validate(noteDTO1);
 
@@ -109,8 +140,13 @@ public class HistoryControllerTest {
 
     //fixme: see why this test doesn't work
 
+    /**
+     * Test validate add form should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_validateAddForm_shouldThrowsException() throws Exception {
+    void test_validateAddForm_shouldThrowsException() throws Exception {
 
         doThrow(new RuntimeException()).when(historyProxyFeign).validate(noteDTO1);
 
@@ -121,8 +157,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get update form.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getUpdateForm() throws Exception {
+    void test_getUpdateForm() throws Exception {
 
         when(historyProxyFeign.getNoteById(anyString())).thenReturn(noteDTO1);
 
@@ -132,8 +173,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get update form should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getUpdateForm_shouldThrowsException() throws Exception {
+    void test_getUpdateForm_shouldThrowsException() throws Exception {
 
         when(historyProxyFeign.getNoteById(anyString())).thenThrow(new RuntimeException());
 
@@ -144,8 +190,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test update.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_update() throws Exception {
+    void test_update() throws Exception {
 
         doNothing().when(historyProxyFeign).update("anyString",noteDTO1);
 
@@ -155,8 +206,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test update should throw exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_update_shouldThrowException() throws Exception {
+    void test_update_shouldThrowException() throws Exception {
 
         doThrow(new RuntimeException()).when(historyProxyFeign).update("anyString",noteDTO1);
 
@@ -166,8 +222,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test delete.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_delete() throws Exception {
+    void test_delete() throws Exception {
 
         when(historyProxyFeign.getPatientId(anyString())).thenReturn(1);
         doNothing().when(historyProxyFeign).delete("anyString");
@@ -178,8 +239,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test delete should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_delete_shouldThrowsException() throws Exception {
+    void test_delete_shouldThrowsException() throws Exception {
 
         when(historyProxyFeign.getPatientId(anyString())).thenThrow(new RuntimeException());
         //doNothing().when(historyProxyFeign).delete("anyString");

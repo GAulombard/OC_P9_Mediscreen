@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Patient service imp.
+ */
 @Service
 @Slf4j
 public class PatientServiceImp implements PatientService {

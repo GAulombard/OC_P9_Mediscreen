@@ -30,6 +30,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Patient controller test.
+ */
 @Slf4j
 @WebMvcTest(PatientController.class)
 public class PatientControllerTest {
@@ -54,6 +57,9 @@ public class PatientControllerTest {
     private static List<Patient> patientList;
     private static List<PatientDTO> patientDTOList;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     static void setUp() {
         log.info("@BeforeAll");
@@ -65,6 +71,11 @@ public class PatientControllerTest {
         patientList = Arrays.asList(patient1, patient2);
     }
 
+    /**
+     * Test get all.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getAll() throws Exception {
 
@@ -77,6 +88,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get patient by id.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getPatientById() throws Exception {
 
@@ -89,6 +105,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get all by last name.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getAllByLastName() throws Exception {
 
@@ -100,6 +121,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get patient by id should throws patient not found exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getPatientById_shouldThrowsPatientNotFoundException() throws Exception {
 
@@ -113,6 +139,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test delete.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_delete() throws Exception {
 
@@ -126,6 +157,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test validate.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_validate() throws Exception {
 
@@ -140,6 +176,11 @@ public class PatientControllerTest {
     }
 
 
+    /**
+     * Test update.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_update() throws Exception {
 

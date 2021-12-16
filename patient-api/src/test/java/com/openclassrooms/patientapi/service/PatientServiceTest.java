@@ -23,6 +23,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * The type Patient service test.
+ */
 @SpringBootTest
 @Slf4j
 public class PatientServiceTest {
@@ -43,6 +46,9 @@ public class PatientServiceTest {
     private static List<Patient> patientList;
     private static List<PatientDTO> patientDTOList;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     public static void setUp() {
         log.info("@BeforeAll");
@@ -54,6 +60,11 @@ public class PatientServiceTest {
         patientList = Arrays.asList(patient1,patient2);
     }
 
+    /**
+     * Test get all.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -65,6 +76,11 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test get all by last name.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -75,6 +91,11 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test save.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -89,6 +110,11 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test save should throws patient already exists exception.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -99,6 +125,12 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test delete.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     * @throws PatientNotFoundException      the patient not found exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -115,6 +147,12 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test delete should throws patient not found exception.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     * @throws PatientNotFoundException      the patient not found exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -124,6 +162,12 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test update.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     * @throws PatientNotFoundException      the patient not found exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -146,6 +190,11 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test update should throws patient not found exception.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -164,6 +213,12 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test find patient by id.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     * @throws PatientNotFoundException      the patient not found exception
+     */
     @Test
     @Transactional
     @Rollback
@@ -180,6 +235,11 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Test find patient by id should throws patient not found exception.
+     *
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @Test
     @Transactional
     @Rollback

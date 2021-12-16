@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
 
+/**
+ * The type Patient dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,6 +29,14 @@ public class PatientDTO {
 
     private String phoneNumber;
 
+    /**
+     * Instantiates a new Patient dto.
+     *
+     * @param lastName  the last name
+     * @param firstName the first name
+     * @param birthDate the birth date
+     * @param sex       the sex
+     */
     public PatientDTO(String lastName, String firstName, LocalDate birthDate, String sex) {
         this.lastName = lastName;
         this.firstName = firstName;

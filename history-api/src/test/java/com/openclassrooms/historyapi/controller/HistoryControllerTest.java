@@ -34,9 +34,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type History controller test.
+ */
 @Slf4j
 @WebMvcTest(HistoryController.class)
-public class HistoryControllerTest {
+class HistoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -60,6 +63,9 @@ public class HistoryControllerTest {
     private static Note note2;
     private static List<Note> noteList;
 
+    /**
+     * Sets up.
+     */
     @BeforeAll
     static void setUp() {
         log.info("@BeforeAll");
@@ -71,14 +77,23 @@ public class HistoryControllerTest {
         noteList = Arrays.asList(note1, note2);
     }
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
+    /**
+     * Test get note by id.
+     *
+     * @throws NoteNotFoundException the note not found exception
+     * @throws Exception             the exception
+     */
     @Test
-    public void test_getNoteById() throws NoteNotFoundException, Exception {
+    void test_getNoteById() throws NoteNotFoundException, Exception {
 
         when(historyServiceImp.readById(anyString())).thenReturn(noteDTO1);
 
@@ -93,8 +108,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get all.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getAll() throws Exception {
+    void test_getAll() throws Exception {
 
         when(historyServiceImp.readAllByPatientId(anyInt())).thenReturn(noteDTOList);
 
@@ -108,8 +128,14 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test delete.
+     *
+     * @throws NoteNotFoundException the note not found exception
+     * @throws Exception             the exception
+     */
     @Test
-    public void test_delete() throws NoteNotFoundException, Exception {
+    void test_delete() throws NoteNotFoundException, Exception {
 
         MvcResult mvcResult = mockMvc.perform(get("/history/delete/string"))
                 .andExpect(status().isOk())
@@ -119,8 +145,14 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test validate.
+     *
+     * @throws NoteAlreadyExistsException the note already exists exception
+     * @throws Exception                  the exception
+     */
     @Test
-    public void test_validate() throws NoteAlreadyExistsException, Exception {
+    void test_validate() throws NoteAlreadyExistsException, Exception {
         NoteDTO noteDTO = new NoteDTO(10, LocalDate.now(), "note");
 
         MvcResult mvcResult = mockMvc.perform(post("/history/validate/")
@@ -131,8 +163,14 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test update.
+     *
+     * @throws Exception                  the exception
+     * @throws NoteAlreadyExistsException the note already exists exception
+     */
     @Test
-    public void test_update() throws Exception, NoteAlreadyExistsException {
+    void test_update() throws Exception, NoteAlreadyExistsException {
 
         NoteDTO noteDTO = new NoteDTO(10, LocalDate.now(), "note");
         historyServiceImp.create(noteDTO);
@@ -145,8 +183,14 @@ public class HistoryControllerTest {
                                      .andReturn();
     }
 
+    /**
+     * Test get patient id.
+     *
+     * @throws Exception             the exception
+     * @throws NoteNotFoundException the note not found exception
+     */
     @Test
-    public void test_getPatientId() throws Exception, NoteNotFoundException {
+    void test_getPatientId() throws Exception, NoteNotFoundException {
 
         when(historyServiceImp.findPatientIdByNoteId(anyString())).thenReturn(anyInt());
 
@@ -158,8 +202,13 @@ public class HistoryControllerTest {
 
     }
 
+    /**
+     * Test get count note per patient.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void test_getCountNotePerPatient() throws Exception {
+    void test_getCountNotePerPatient() throws Exception {
 
         Map<Integer, Integer> map = new HashMap<>();
 

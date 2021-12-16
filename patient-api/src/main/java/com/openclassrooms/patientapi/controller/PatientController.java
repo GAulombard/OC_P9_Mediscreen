@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * The type Patient controller.
+ */
 @RestController
 @Slf4j
 @RequestMapping("/patient")
@@ -25,6 +28,13 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
+    /**
+     * Gets patient by id.
+     *
+     * @param id the id
+     * @return the patient by id
+     * @throws PatientNotFoundException the patient not found exception
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns a patient by id")
     public PatientDTO getPatientById(@ApiParam(
@@ -38,6 +48,11 @@ public class PatientController {
         return patientDTO;
     }
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     @GetMapping("/list")
     @ApiOperation(value = "This URI returns a list of all patient saved in database.")
     public List<Patient> getAll() {
@@ -48,6 +63,12 @@ public class PatientController {
         return resultList;
     }
 
+    /**
+     * Gets all by last name.
+     *
+     * @param familyName the family name
+     * @return the all by last name
+     */
     @GetMapping("/list/{familyName}")
     @ApiOperation(value = "This URI returns a list of all patients with the same family name.")
     public List<PatientDTO> getAllByLastName(@ApiParam(
@@ -61,6 +82,12 @@ public class PatientController {
         return resultList;
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     * @throws PatientNotFoundException the patient not found exception
+     */
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "This URI allows to delete a patient from the database")
     public void delete(
@@ -75,6 +102,12 @@ public class PatientController {
 
     }
 
+    /**
+     * Validate.
+     *
+     * @param patientDTO the patient dto
+     * @throws PatientAlreadyExistsException the patient already exists exception
+     */
     @PostMapping("/validate")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the patient form to save a new patient in the database.")
@@ -85,6 +118,13 @@ public class PatientController {
 
     }
 
+    /**
+     * Update.
+     *
+     * @param id         the id
+     * @param patientDTO the patient dto
+     * @throws PatientNotFoundException the patient not found exception
+     */
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the patient's form to update a patient's personal information in the database.")

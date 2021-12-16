@@ -28,6 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+/**
+ * The type Patient controller test.
+ */
 @Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -51,6 +54,9 @@ public class PatientControllerTest {
     private static PatientDTO patientDTO1;
     private static List<NoteDTO> noteDTOList;
 
+    /**
+     * Sets up before each.
+     */
     @BeforeEach
     public void setUpBeforeEach() {
         log.info("@BeforeEach");
@@ -61,6 +67,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get list.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getList() throws Exception {
 
@@ -73,6 +84,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get list should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getList_shouldThrowsException() throws Exception {
 
@@ -85,6 +101,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get add form.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getAddForm() throws Exception {
 
@@ -94,6 +115,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test validate add form.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_validateAddForm() throws Exception {
 
@@ -105,6 +131,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test validate add form with invalid field.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_validateAddForm_withInvalidField() throws Exception {
 
@@ -116,6 +147,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test validate add form should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_validateAddForm_shouldThrowsException() throws Exception {
 
@@ -128,6 +164,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get update form.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getUpdateForm() throws Exception {
 
@@ -139,6 +180,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test get update form should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_getUpdateForm_shouldThrowsException() throws Exception {
 
@@ -151,6 +197,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test update.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_update() throws Exception {
 
@@ -162,6 +213,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test update with invalid field.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_update_withInvalidField() throws Exception {
 
@@ -173,6 +229,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test update should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_update_shouldThrowsException() throws Exception {
 
@@ -185,6 +246,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test delete.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_delete() throws Exception {
 
@@ -196,6 +262,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test delete should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_delete_shouldThrowsException() throws Exception {
 
@@ -208,6 +279,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test profile.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_profile() throws Exception {
 
@@ -223,6 +299,11 @@ public class PatientControllerTest {
 
     }
 
+    /**
+     * Test profile should throws exception.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void test_profile_shouldThrowsException() throws Exception {
 
