@@ -218,7 +218,7 @@ public class PatientController {
             patientDTO = patientProxyFeign.getPatientById(id);
             noteDTOList = historyProxyFeign.getAll(id);
             assessmentDTO = assessmentProxyFeign.getPatientAssessment(id);
-        } catch (Exception e) {
+        } catch (FeignException e) {
             log.error("" + e.getMessage());
             model.addAttribute("errorMsg", e.toString());
             return "error/error";
