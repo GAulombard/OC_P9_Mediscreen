@@ -1,5 +1,8 @@
 version: '3.6'
 services:
+  ###########################
+  #          MYSQL
+  ###########################
   mysql:
     image: mysql
     container_name: mysqldb
@@ -15,7 +18,9 @@ services:
     networks:
       - web-server
     restart: always
-
+  ###########################
+  #         MONGO
+  ###########################
   mongo:
     image: mongo
     container_name: mongodb
@@ -26,7 +31,9 @@ services:
     networks:
       - web-server
     restart: always
-
+  ###########################
+  #         UI API
+  ###########################
   ui-api:
     environment:
       - PROXY_PATIENT=patient-api:8081/patient
@@ -46,7 +53,9 @@ services:
       - mongo
       - assessment-api
       - history-api
-
+  ###########################
+  #       PATIENT API
+  ###########################
   patient-api:
     build: patient-api
     image: patient-api-1.0.0.jar
@@ -63,7 +72,9 @@ services:
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysql
-
+  ###########################
+  #       HISTORY API
+  ###########################
   history-api:
     build: history-api
     image: history-api-1.0.0.jar
@@ -73,6 +84,9 @@ services:
     ports:
       - "8082:8082"
     container_name: history-api
+  ###########################
+  #     ASSESSMENT API
+  ###########################
   assessment-api:
     environment:
       - PROXY_PATIENT=patient-api:8081/patient
@@ -87,11 +101,15 @@ services:
     container_name: assessment-api
     depends_on:
       - mongo
-
+###########################
+#        NETWORK
+###########################
 networks:
   web-server:
     driver: bridge
-
+###########################
+#       VOLUMES
+###########################
 volumes:
   mediscreen_mysql:
   mediscreen_mongo:
