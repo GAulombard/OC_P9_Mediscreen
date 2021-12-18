@@ -131,7 +131,7 @@ public class PatientController {
     public void update(@ApiParam(
             value = "id",
             example = "2"
-    ) @PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) throws PatientNotFoundException {
+    ) @PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) throws PatientNotFoundException, PatientAlreadyExistsException {
         log.info("HTTP POST request received at /patient/update/" + id);
 
         patientService.update(patientDTO);

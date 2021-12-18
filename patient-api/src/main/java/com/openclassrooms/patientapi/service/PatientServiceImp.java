@@ -78,12 +78,17 @@ public class PatientServiceImp implements PatientService {
     }
 
     @Override
-    public void update(PatientDTO patientDTO) throws PatientNotFoundException {
+    public void update(PatientDTO patientDTO) throws PatientNotFoundException, PatientAlreadyExistsException {
         log.info("** Process to update an existing patient in database");
 
         Patient patientToUpdate = dtoConverter.PatientDTOToPatient(patientDTO);
 
         if(!patientRepository.existsById(patientToUpdate.getId())) throw new PatientNotFoundException("Patient not found");
+
+        if(patientRepository.existsByLastNameAndFirstNameAndBirthDate(patientToUpdate.getLastName(),patientToUpdate.getFirstName(),patientToUpdate.getBirthDate())) {
+            Patient alreadyExistingPatient = patientRepository.findPatientByLastNameAndFirstNameAndBirthDate(patientToUpdate.getLastName(),patientToUpdate.getFirstName(),patientToUpdate.getBirthDate());
+            if(patientToUpdate.getId() != alreadyExistingPatient.getId()) throw new PatientAlreadyExistsException("Patient with those informations already exists");
+        }
 
         patientRepository.save(patientToUpdate);
 

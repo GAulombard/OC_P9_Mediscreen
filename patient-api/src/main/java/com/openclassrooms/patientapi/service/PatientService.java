@@ -51,7 +51,7 @@ public interface PatientService {
      * @param patientDTO the patient dto
      * @throws PatientNotFoundException the patient not found exception
      */
-    void update(PatientDTO patientDTO) throws PatientNotFoundException;
+    void update(PatientDTO patientDTO) throws PatientNotFoundException, PatientAlreadyExistsException;
 
     /**
      * Find patient by id patient dto.
