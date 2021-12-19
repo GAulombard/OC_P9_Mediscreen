@@ -55,12 +55,13 @@ class AssessmentControllerTest {
     @Test
     void test_getPatientAssessment() throws Exception {
 
-        AssessmentDTO assessmentDTO = new AssessmentDTO();
+        PatientDTO  patientDTO = new PatientDTO(12,"TEST","test",LocalDate.now(),"M","address","0123456789");
+        AssessmentDTO assessmentDTO = new AssessmentDTO(patientDTO,0,"test");
 
         when(assessmentProxyFeign.getPatientAssessment(1)).thenReturn(assessmentDTO);
 
         mockMvc.perform(get("/assessment/1"))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andReturn();
     }
 
@@ -93,7 +94,7 @@ class AssessmentControllerTest {
         when(assessmentProxyFeign.getFamilyAssessment("anyString")).thenReturn(assessmentDTOList);
 
         mockMvc.perform(get("/assessment/familyName?value=anyString"))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andReturn();
     }
 

@@ -287,7 +287,8 @@ public class PatientControllerTest {
     @Test
     public void test_profile() throws Exception {
 
-        AssessmentDTO assessmentDTO = new AssessmentDTO();
+        PatientDTO  patientDTO = new PatientDTO(12,"TEST","test",LocalDate.now(),"M","address","0123456789");
+        AssessmentDTO assessmentDTO = new AssessmentDTO(patientDTO,0,"test");
 
         when(patientProxyFeign.getPatientById(1)).thenReturn(patientDTO1);
         when(historyProxyFeign.getAll(1)).thenReturn(noteDTOList);
