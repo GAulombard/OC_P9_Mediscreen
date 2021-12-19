@@ -87,7 +87,7 @@ public class PatientServiceImp implements PatientService {
 
         if(patientRepository.existsByLastNameAndFirstNameAndBirthDate(patientToUpdate.getLastName(),patientToUpdate.getFirstName(),patientToUpdate.getBirthDate())) {
             Patient alreadyExistingPatient = patientRepository.findPatientByLastNameAndFirstNameAndBirthDate(patientToUpdate.getLastName(),patientToUpdate.getFirstName(),patientToUpdate.getBirthDate());
-            if(patientToUpdate.getId() != alreadyExistingPatient.getId()) throw new PatientAlreadyExistsException("Patient with those informations already exists");
+            if(patientToUpdate.getId() != alreadyExistingPatient.getId()) throw new PatientAlreadyExistsException("Patient with those information already exists");
         }
 
         patientRepository.save(patientToUpdate);

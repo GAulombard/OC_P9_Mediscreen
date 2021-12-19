@@ -8,6 +8,8 @@ import com.openclassrooms.assessmentapi.model.Assessment;
 import com.openclassrooms.assessmentapi.proxy.HistoryProxyFeign;
 import com.openclassrooms.assessmentapi.proxy.PatientProxyFeign;
 import com.openclassrooms.assessmentapi.util.AgeCalculator;
+import feign.Feign;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,11 +67,15 @@ public class AssessmentServiceImp implements AssessmentService{
     private int getNumberTriggerNote(List<NoteDTO> notes) {
         log.info("** Process to get note trigger");
 
+        //Create a Set collection from our enumeration
         EnumSet<DiabetesTrigger> diabetesTriggers = EnumSet.allOf(DiabetesTrigger.class);
 
         List<DiabetesTrigger> patientTriggers = new ArrayList();
+
+        //Count nbr of trigger found for each notes
         diabetesTriggers.forEach(diabetesTrigger -> {
             notes.forEach(note -> {
+                //if the note contains the trigger and is not already on the list -> add the trigger to the list
                 if (StringUtils.containsIgnoreCase(note.getNote(), diabetesTrigger.getTrigger()) &&
                         !patientTriggers.contains(diabetesTrigger)) {
                     patientTriggers.add(diabetesTrigger);
@@ -83,7 +89,9 @@ public class AssessmentServiceImp implements AssessmentService{
     private String getRiskLevel(int nbrTrigger, int age,String gender) {
         log.info("** Process to get risk level");
 
+        //default risk level
         String riskLevel = RiskLevel.NONE.getRiskLevel();
+
 
         if ((((gender.equals("F")) && age < 30 && nbrTrigger >= 7) || ((gender.equals("M")) && age < 30
                 && nbrTrigger >= 5)) || (age >= 30 && nbrTrigger >= 8)) {

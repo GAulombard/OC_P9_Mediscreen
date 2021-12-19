@@ -40,7 +40,10 @@ public class HistoryController {
      */
     @ApiOperation(value = "This URI returns the history list of a patient")
     @GetMapping({"/list/{id}"})
-    public String getList(@PathVariable("id") Integer id, Model model) {
+    public String getList(@ApiParam(
+            value = "the patient id",
+            example = "4"
+    )@PathVariable("id") Integer id, Model model) {
         log.info("HTTP GET request received at /history/list/" + id);
 
         try {
@@ -63,7 +66,10 @@ public class HistoryController {
      */
     @ApiOperation(value = "This URI returns the form page to add a new patient's history")
     @GetMapping({"/add/{id}"})
-    public String getAddForm(@PathVariable("id") Integer patientId, Model model) {
+    public String getAddForm(@ApiParam(
+            value = "the patient id",
+            example = "2"
+    )@PathVariable("id") Integer patientId, Model model) {
         log.info("HTTP GET request received at /history/add/" + patientId);
 
         try {
@@ -116,7 +122,7 @@ public class HistoryController {
     @ApiOperation(value = "This URI returns the form page to update patient's note")
     @GetMapping({"/update/{id}"})
     public String getUpdateForm(@ApiParam(
-            value = "id",
+            value = "the note id",
             example = "61b1daec21efc6385fca1920"
     ) @PathVariable("id") String id, final Model model) {
         log.info("HTTP GET request received at /history/update/" + id);

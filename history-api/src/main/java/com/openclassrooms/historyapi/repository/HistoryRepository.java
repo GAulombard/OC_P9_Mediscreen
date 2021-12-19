@@ -49,10 +49,9 @@ public interface HistoryRepository extends MongoRepository<Note, String> {
      */
 //group = GROUP BY in SQL: gathers input together as per the specified criteria (e.g. count, sum) to return a document for each distinct grouping
     //project = SELECT in SQL: 	selects only the required fields, can also be used to compute and add derived fields to the collection
-    //varGroup = { $group : {"_id" : "$patient_id", "count" : {$sum : 1} } }
-    //varProject = { $project: {"_id": 0,"patient_id":"$_id","count": 1}}
-    //db.getCollection('note').aggregate([varGroup,varProject])
-    @Aggregation(pipeline = {"{ $group : {\"_id\" : \"$patient_id\", \"count\" : {$sum : 1} } }","{ $project: {\"_id\": 0,\"patient_id\":\"$_id\",\"count\": 1}}"})
+    //db.getCollection('note').aggregate([....,....])
+    @Aggregation(pipeline = {"{ $group : {\"_id\" : \"$patient_id\", \"count\" : {$sum : 1} } }",
+                             "{ $project: {\"_id\": 0,\"patient_id\":\"$_id\",\"count\": 1}}"})
     AggregationResults<NoteCounter> countNotesPerPatient();
 
 }

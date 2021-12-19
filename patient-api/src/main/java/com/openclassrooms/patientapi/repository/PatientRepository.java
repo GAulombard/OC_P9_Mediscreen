@@ -32,6 +32,14 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
      */
     List<Patient> findAllByLastName(String lastName);
 
+    /**
+     * Find patient by last name and first name and birth date patient.
+     *
+     * @param lastName  the last name
+     * @param firstName the first name
+     * @param birthDate the birth date
+     * @return the patient
+     */
     Patient findPatientByLastNameAndFirstNameAndBirthDate(String lastName,String firstName, LocalDate birthDate);
 
 }

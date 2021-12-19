@@ -38,7 +38,7 @@ public class PatientController {
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns a patient by id")
     public PatientDTO getPatientById(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id) throws PatientNotFoundException {
         log.info("HTTP GET request received at /patient/" + id);
@@ -72,7 +72,7 @@ public class PatientController {
     @GetMapping("/list/{familyName}")
     @ApiOperation(value = "This URI returns a list of all patients with the same family name.")
     public List<PatientDTO> getAllByLastName(@ApiParam(
-            value = "familyName",
+            value = "the family name",
             example = "Arnold"
     )@PathVariable("familyName") String familyName) {
         log.info("HTTP GET request received at /patient/list/"+familyName);
@@ -92,7 +92,7 @@ public class PatientController {
     @ApiOperation(value = "This URI allows to delete a patient from the database")
     public void delete(
             @ApiParam(
-                    value = "id",
+                    value = "the patient id",
                     example = "2"
             )
             @PathVariable("id") Integer id) throws PatientNotFoundException {
@@ -123,13 +123,14 @@ public class PatientController {
      *
      * @param id         the id
      * @param patientDTO the patient dto
-     * @throws PatientNotFoundException the patient not found exception
+     * @throws PatientNotFoundException      the patient not found exception
+     * @throws PatientAlreadyExistsException the patient already exists exception
      */
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the patient's form to update a patient's personal information in the database.")
     public void update(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id, @Valid @RequestBody PatientDTO patientDTO) throws PatientNotFoundException, PatientAlreadyExistsException {
         log.info("HTTP POST request received at /patient/update/" + id);

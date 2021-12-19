@@ -36,11 +36,11 @@ public class HistoryServiceImp implements HistoryService{
     public void create(NoteDTO noteDTO) throws NoteAlreadyExistsException {
         log.info("** Process to save a new note in the database");
 
-        noteDTO.setDate(LocalDate.now(Clock.systemUTC())); //todo:change that to get the real time zone
+        noteDTO.setDate(LocalDate.now(Clock.systemUTC()));
         Note noteToSave = dtoConverter.NoteDTOToNote(noteDTO);
 
         if(historyRepository.existsByNoteAndPatientIdAndDate(noteToSave.getNote(),noteToSave.getPatientId(),noteToSave.getDate())) {
-            throw new NoteAlreadyExistsException("Note already exists");//fixme: show error 500 internal server error on view instead of 409 conflict
+            throw new NoteAlreadyExistsException("Note already exists");
         }
 
         historyRepository.save(noteToSave);
@@ -66,7 +66,7 @@ public class HistoryServiceImp implements HistoryService{
 
         if(!historyRepository.existsById(noteId)) throw new NoteNotFoundException("Note not found");
 
-        noteDTO.setDate(LocalDate.now(Clock.systemUTC())); //todo:change that to get the real time zone
+        noteDTO.setDate(LocalDate.now(Clock.systemUTC()));
         Note note = dtoConverter.NoteDTOToNote(noteDTO);
 
         historyRepository.save(note);

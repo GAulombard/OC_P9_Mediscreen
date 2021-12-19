@@ -36,7 +36,7 @@ public class AssessmentController {
     @ApiOperation(value = "This URI returns the assessment given a patient id")
     @GetMapping({"/{id}"})
     public String getPatientAssessment(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "4"
     )@PathVariable("id") Integer patientId, Model model){
         log.info("HTTP GET request received at /assessment/"+patientId);
@@ -66,7 +66,7 @@ public class AssessmentController {
     @ApiOperation(value = "This URI returns a list of assessment given a family name")
     @GetMapping({"/familyName"})
     public String getFamilyAssessment(@ApiParam(
-            value = "familyName",
+            value = "the family name",
             example = "Ferguson"
     )@RequestParam(value="value") String familyName, Model model){
         log.info("HTTP GET request received at /assessment/familyName?value="+familyName);

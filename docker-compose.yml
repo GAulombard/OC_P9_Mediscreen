@@ -49,8 +49,6 @@ services:
     container_name: ui-api
     depends_on:
       - patient-api
-      - mysql
-      - mongo
       - assessment-api
       - history-api
   ###########################
@@ -84,6 +82,8 @@ services:
     ports:
       - "8082:8082"
     container_name: history-api
+    depends_on:
+      - mongo
   ###########################
   #     ASSESSMENT API
   ###########################
@@ -100,7 +100,8 @@ services:
       - "8083:8083"
     container_name: assessment-api
     depends_on:
-      - mongo
+      - history-api
+      - patient-api
 ###########################
 #        NETWORK
 ###########################

@@ -39,7 +39,7 @@ public class AssessmentController {
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns the assessment given a patient id")
     public AssessmentDTO getPatientAssessment(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "4"
     )@PathVariable("id") Integer patientId) throws Exception {
         log.info("HTTP GET request received at /assessment/"+patientId);
@@ -56,9 +56,9 @@ public class AssessmentController {
      * @return the family assessment list
      */
     @GetMapping("/familyName")
-    @ApiOperation(value = "This URI returns a list of assessment given a family name")
+    @ApiOperation(value = "This URI returns a list of assessment given a family name, matching each member of the family")
     public List<AssessmentDTO> getFamilyAssessmentList(@ApiParam(
-            value = "familyName",
+            value = "the family name",
             example = "Ferguson"
     )@RequestParam(value="value") String familyName){
         log.info("HTTP GET request received at /assessment/familyName?value="+familyName);

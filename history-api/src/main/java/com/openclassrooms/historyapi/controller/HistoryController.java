@@ -35,7 +35,7 @@ public class HistoryController {
     @GetMapping("/{id}")
     @ApiOperation(value = "This URI returns a note by id")
     public NoteDTO getNoteById(@ApiParam(
-            value = "id",
+            value = "the note id",
             example = "61b67a48b17a820c8e8c11c2"
     ) @PathVariable("id") String id) throws NoteNotFoundException {
         log.info("HTTP GET request received at /history/" + id);
@@ -54,7 +54,7 @@ public class HistoryController {
     @GetMapping("/list/{id}")
     @ApiOperation(value = "This URI returns a list of all patient's notes saved in database given the patient's id.")
     public List<NoteDTO> getAll(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id) {
         log.info("HTTP GET request received at /history/list/" + id);
@@ -73,7 +73,7 @@ public class HistoryController {
     @GetMapping("/delete/{id}")
     @ApiOperation(value = "This URI allows to delete a note from the database")
     public void delete(@ApiParam(
-            value = "id",
+            value = "the note id",
             example = "61b1daec21efc6385fca1920"
     )
                        @PathVariable("id") String id) throws NoteNotFoundException {
@@ -110,7 +110,7 @@ public class HistoryController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "This uri validate the note's form to update a patient's note in the database.")
     public void update(@ApiParam(
-            value = "id",
+            value = "the note id",
             example = "61b1daec21efc6385fca1920"
     ) @PathVariable("id") String id, @RequestBody NoteDTO noteDTO) throws NoteNotFoundException {
         log.info("HTTP POST request received at /history/update/" + id);
@@ -129,7 +129,7 @@ public class HistoryController {
     @GetMapping("/patient/{id}")
     @ApiOperation(value = "This URI returns the patient id given a note id")
     public Integer getPatientId(@ApiParam(
-            value = "id",
+            value = "the note id",
             example = "61b67a48b17a820c8e8c11c2"
     )
                        @PathVariable("id") String id) throws NoteNotFoundException {

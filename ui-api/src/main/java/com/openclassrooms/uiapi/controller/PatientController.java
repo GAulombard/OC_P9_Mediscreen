@@ -117,7 +117,7 @@ public class PatientController {
     @ApiOperation(value = "This URI returns the form page to update patient's information")
     @GetMapping({"/update/{id}"})
     public String getUpdateForm(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id, final Model model) {
         log.info("HTTP GET request received at /patient/update/" + id);
@@ -149,7 +149,7 @@ public class PatientController {
     @ApiOperation(value = "This URI update patient's information")
     @PostMapping({"/update/{id}"})
     public String update(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id, @Valid @ModelAttribute("patientDTO") PatientDTO patientDTO, BindingResult bindingResult, final Model model) {
         log.info("HTTP POST request received at /patient/update/" + id);
@@ -179,7 +179,7 @@ public class PatientController {
     @ApiOperation(value = "This URI allow to delete a patient")
     @GetMapping({"/delete/{id}"})
     public String delete(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id, Model model) {
         log.info("HTTP GET request received at /patient/delete/" + id);
@@ -205,7 +205,7 @@ public class PatientController {
     @ApiOperation(value = "This URI returns the patient's profile page")
     @GetMapping({"/profile/{id}"})
     public String profile(@ApiParam(
-            value = "id",
+            value = "the patient id",
             example = "2"
     ) @PathVariable("id") Integer id, Model model) {
         log.info("HTTP GET request received at /patient/profile/" + id);
